@@ -1,0 +1,31 @@
+# Maven
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+
+# Logs
+*.log
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# IDEs
+.idea/
+.vscode/
+*.iml
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# Arquivos compilados
+*.class
+
+# Arquivos temporários
+*.tmp
+
+# Arquivos de ambiente
+.env
+.env.*
+application-local.properties

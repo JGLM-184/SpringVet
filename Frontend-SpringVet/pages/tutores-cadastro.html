@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="../css/global.css">
+<link rel="stylesheet" href="../css/tutores-cadastro.css">
+
+<title>Novo Tutor</title>
+</head>
+
+<body>
+
+<nav id="navbar"></nav>
+<main class="container">
+
+<form class="form-grid">
+
+    <div class="flex-box-tutor">
+
+        <h1 class="titulo">Tutor</h1>
+
+        <input class="input-text" type="text" name="nome" placeholder="Nome">
+
+        <input class="input-text" type="text" name="cpf" placeholder="CPF">
+
+        <input class="input-text" type="email" name="email" placeholder="Email">
+
+        <input class="input-text" type="text" name="celular" placeholder="N° Celular ">
+
+        <div class="acoes-tutor">
+            <button class="btn-roxo" type="submit">Cadastrar</button>
+        </div>
+
+    </div>
+
+    <div class="col-animais">
+
+        <div class="header-animais">
+            <h2>Animais</h2>
+            <button class="btn-branco" type="button" onclick="adicionarAnimal()">Novo animal</button>
+        </div>
+
+        <div id="lista-animais"></div>
+
+    </div>
+
+</form>
+
+</main>
+
+<script src="../js/navbar.js"></script>
+<script src="../js/lista-animais.js"></script>
+
+</body>
+</html>

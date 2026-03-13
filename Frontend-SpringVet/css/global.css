@@ -1,0 +1,265 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+/*
+================ 
+=     TELA     =
+================
+*/
+
+* {
+    font-family: Poppins, Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    margin: auto;
+    background-color: #F8FFE5;
+}
+
+main {
+    padding: 15px;
+}
+
+.voltar {
+    display: flex;
+    margin: 20px;
+    max-width: 100px;
+    width: 100%;
+    justify-content: flex-start;
+}
+
+
+/*
+================ 
+=    NAVBAR    =
+================
+*/
+nav {
+    display: flex;
+    background-image: linear-gradient(to right, #6853c6, #6070bc, #6b7ac2, #7b89cf);
+    padding: 8px;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+ul {
+    display: flex;
+    list-style: none;
+    width: 100%;
+    align-items: center;
+}
+
+li {
+    padding: 5px;
+}
+
+li a {
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+    background-color: #a1adeb34;
+    border-radius: 10px;
+    padding: 5px 10px;
+}
+
+ul span {
+    font-size: 24px;
+    color: white;
+    font-weight: 600;
+    margin-right: auto;
+}
+
+@media (max-width: 768px) {
+
+ul {
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+li {
+    width: 100%;
+}
+
+li a {
+    display: block;
+    width: 100%;
+}
+
+}
+
+
+
+
+/*
+================ 
+=    BOTÕES    =
+================
+*/
+
+.btn-roxo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    background-color: #4e4987;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-roxo:hover {
+    background-color: rgb(82, 41, 154);
+}
+
+/*==================*/
+
+.btn-rosa {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 8px;
+    background-color: #9a569e;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-rosa:hover {
+    background-color: #823f85;
+}
+
+/*==================*/
+
+.btn-vermelho {
+    padding: 4px 8px;
+    background-color: #c61f1f;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-vermelho:hover {
+    background-color: #641111;
+}
+
+/*==================*/
+
+.btn-branco {
+    padding: 4px 8px;
+    background-color: rgba(255, 255, 255, 0);
+    color: #6e68b1;
+    border: 2px solid #6e68b1;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-branco:hover {
+    background-color: rgba(247, 219, 255, 0.582);
+}
+
+/*
+================ 
+=     CARDS    =
+================
+*/
+
+
+.card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    overflow-wrap: break-word;  
+    background-color: #F8FFE5;
+    border-radius: 15px;
+    padding: 18px;
+    gap: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+}
+
+.card-titulo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    font-size: 16px;
+}
+
+.card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 14px;
+
+}
+
+.linha {
+    display: flex;
+    justify-content: space-between;
+}   
+
+.card-btn {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+    transition: 0.2s;
+}
+
+
+/*
+========================
+=    CAIXA DE TEXTO    =
+========================
+*/
+.input-text {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/*
+=================
+=    IMAGENS    =
+=================
+*/
+
+.img-icon {
+    width: 20px;
+    height: 20px;
+}
+
+/*==================*/
+
+.img-animal {
+    width: 50px;
+    height: 50px;
+}
+
+span {
+    margin-right: 10px;
+}
