@@ -2,7 +2,7 @@ let contador = 1;
 
 function adicionarAnimal() {
 
-    const lista = document.getElementById("lista-animais");
+    const lista = document.getElementById("cadastrar-animais");
 
     const novoAnimal = document.createElement("div");
 

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/tutores-dados.css">
+    <title>Dados Tutor</title>
+</head>
+
+<body>
+    <nav id="navbar"></nav>
+
+    <main class="container">
+        <h1>Dados do Tutor</h1>
+        <div class="flex-box-tutor">
+            <p><strong>Nome: </strong><span>João Gabriel</span></p>
+            <p><strong>CPF: </strong> <span>123.456.789.10</span></p>
+            <p><strong>Email: </strong><span>joaogabrielm591@gmail.com</span></p>
+            <p><strong>Telefone: </strong><span>(11) 97646-8515</span></p>
+            <div class="card-btn">
+                <button id="btn-editar-tutor" class="btn-rosa">
+                    <img class="img-icon" src="../assets/editar.png" alt="Editar tutor">
+                </button>
+                <button class="btn-vermelho">
+                    <img class="img-icon" src="../assets/lixo.png" alt="Editar tutor">
+                </button>
+            </div>
+
+        </div>
+        <div class="flex-box-animais">
+            <h1>Animais</h1>
+            <div class="filtros">
+                <input class="input-text" type="text" placeholder="Nome do animal">
+                <button class="btn-roxo">Buscar</button>
+                <button class="btn-rosa">Novo</button>
+            </div>
+        </div>
+    </main>
+
+    <dialog id="modal-editar-tutor">
+
+        <h2>Editar Tutor</h2>
+
+        <form>
+            <input class="input-text" type="text" name="nome" placeholder="Nome">
+            <input class="input-text" type="text" name="cpf" placeholder="CPF">
+            <input class="input-text" type="email" name="email" placeholder="Email">
+            <input class="input-text" type="text" name="telefone" placeholder="Telefone">
+
+            <div class="modal-botoes">
+                <button id="cancelar-editar-tutor" class="btn-vermelho" type="button">Cancelar</button>
+                <button class="btn-roxo" type="submit">Salvar</button>
+            </div>
+        </form>
+
+    </dialog>
+
+
+    <dialog id="modal-editar-animal">
+
+        <h2>Editar Animal</h2>
+
+        <form>
+            <input class="input-text" type="text" name="nome" placeholder="Nome">
+            <select class="input-text" name="especie">
+                <option value="">Espécie</option>
+                <option>Cachorro</option>
+                <option>Gato</option>
+            </select>
+
+            <input class="input-text" type="text" name="raca" placeholder="Raça">
+
+            <input class="input-text" type="text" name="cor" placeholder="Cor">
+
+            <select class="input-text" name="sexo">
+                <option value="">Sexo</option>
+                <option>Macho</option>
+                <option>Fêmea</option>
+            </select>
+
+            <input class="input-text" type="date" name="nasc" placeholder="Data de nascimento">
+
+            <label>Castrado?</label>
+            <div class="group-radio">
+                <div>
+                    <input class="radio-btn" type="radio" name="castrado" value="true">
+                    <label>Sim</label>
+                </div>
+
+                <div>
+                    <input class="radio-btn" type="radio" name="castrado" value="false">
+                    <label>Não</label>
+                </div>
+            </div>
+
+            <div class="modal-botoes">
+                <button id="cancelar-editar-animal" class="btn-vermelho" type="button">Cancelar</button>
+                <button class="btn-roxo" type="submit">Salvar</button>
+            </div>
+        </form>
+
+    </dialog>
+
+    <script src="../js/navbar.js"></script>
+    <script src="../js/card-animais.js"></script>
+    <script src="../js/modais-tutor.js"></script>
+
+
+</body>
+
+</html>

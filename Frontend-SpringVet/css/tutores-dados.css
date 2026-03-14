@@ -1,0 +1,67 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    background-image: linear-gradient(to right, #6b7ac2, #7b89cf, #929fde);
+    border: 1px solid #6b7ac2;
+    margin: 20px 10px 10px 10px;
+    height: 80vh;
+    width: 60vw;
+    border-radius: 15px;
+    justify-self: center;
+    gap: 10px;
+    overflow-y: auto;
+}
+
+.flex-box-tutor {
+    flex: 1;
+    background-color: white;
+    border-radius: 15px;
+    padding: 10px;
+    margin-bottom: 30px;
+}
+
+.flex-box-animais {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    border-radius: 15px;
+    padding: 10px;
+    gap: 15px;
+}
+
+h1 {
+    color: white;
+    font-size: 1.5em;
+}
+
+dialog {
+    align-self: center;
+    justify-self: center;
+    border: none;
+    border-radius: 12px;
+    padding: 25px;
+    width: 400px;
+}
+
+dialog::backdrop {
+    background: rgba(0,0,0,0.4);
+}
+
+.modal-botoes {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+#modal-editar-tutor form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+#modal-editar-animal form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}

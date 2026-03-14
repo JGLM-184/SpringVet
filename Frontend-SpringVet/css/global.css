@@ -184,7 +184,7 @@ li a {
 .card {
     display: flex;
     flex-direction: column;
-    min-width: 0;
+    min-width: 0; 
     overflow-wrap: break-word;  
     background-color: #F8FFE5;
     border-radius: 15px;
@@ -262,4 +262,10 @@ li a {
 
 span {
     margin-right: 10px;
+}
+
+.filtros {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
 }
