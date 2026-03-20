@@ -1,0 +1,26 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    margin: 50px auto;
+    height: auto;
+    width: 50vw;
+    background-color: var(--oliva);
+    border-radius: 15px;
+    justify-self: center;
+}
+
+.acoes-veterinario {
+    display: flex;
+    justify-content: right;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+h1 {
+    color: white;
+}
+

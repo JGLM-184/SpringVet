@@ -1,5 +1,6 @@
 package com.joao.clinicaveterinaria.repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -16,4 +17,5 @@ public interface ConsultaRepository extends JpaRepository<Consulta, Long>{
 	List<Consulta> findByAnimalTutor(Tutor tutor);
 	List<Consulta> findByVeterinario(Veterinario veterinario);
 	List<Consulta> findByAnimal(Animal animal);
+	boolean existsByVeterinarioAndDataHora(Veterinario veterinario, LocalDateTime dataHora);
 }

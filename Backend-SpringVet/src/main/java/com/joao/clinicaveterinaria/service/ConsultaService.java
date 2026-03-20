@@ -88,18 +88,23 @@ public class ConsultaService {
 		return consultasAnimalDto;
 	}
 
-	public ConsultaDto criar(Long idAnimal, Long idVeterinario, ConsultaDto dto) {
-		
-		Consulta consulta = toConsulta(dto);
-		
+	public ConsultaDto criar(Long idAnimal, Long idVeterinario, ConsultaDto dto) {		
 		Animal animal = animalRepository.findById(idAnimal)
 				.orElseThrow(() -> new ResourceNotFoundException("Animal não encontrado"));
 		
 		Veterinario veterinario = veterinarioRepository.findById(idVeterinario)
 				.orElseThrow(() -> new ResourceNotFoundException("Veterinario não encontrado"));
 		
+		if (consultaRepository.existsByVeterinarioAndDataHora(veterinario, dto.getDataHora())) {
+		    throw new RuntimeException("Já existe uma consulta para esse veterinário nesse horário");
+		}
+		
+		Consulta consulta = toConsulta(dto);
+
+		
 		consulta.setAnimal(animal);
 		consulta.setVeterinario(veterinario);
+		
 		
 		consultaRepository.save(consulta);
 		
@@ -107,23 +112,45 @@ public class ConsultaService {
 	}
 	
 	public ConsultaDto alterar(Long id, Long idVeterinario, ConsultaDto dto) {
-		Consulta consulta = consultaRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Consulta não encontrada"));
-		
-		Veterinario veterinario = veterinarioRepository.findById(idVeterinario)
-				.orElseThrow(() -> new ResourceNotFoundException("Veterinario não encontrado"));
-		
-		consulta.setDataHora(dto.getDataHora());
-		consulta.setMotivo(dto.getMotivo());
-		consulta.setObservacao(dto.getObservacao());
-		consulta.setValor(dto.getValor());
-		consulta.setFormaPagamento(dto.getFormaPagamento());
-		consulta.setPaga(dto.isPaga());
-		consulta.setVeterinario(veterinario);
-		
-		consultaRepository.save(consulta);
-		
-		return toDto(consulta);
+
+	    Consulta consulta = consultaRepository.findById(id)
+	            .orElseThrow(() -> new ResourceNotFoundException("Consulta não encontrada"));
+
+	    Veterinario veterinario = veterinarioRepository.findById(idVeterinario)
+	            .orElseThrow(() -> new ResourceNotFoundException("Veterinario não encontrado"));
+
+	    boolean mudouHorario = !consulta.getDataHora().equals(dto.getDataHora());
+	    boolean mudouVeterinario = !consulta.getVeterinario().getId().equals(idVeterinario);
+
+	    if (mudouHorario || mudouVeterinario) {
+
+	        if (consultaRepository.existsByVeterinarioAndDataHora(veterinario, dto.getDataHora())) {
+
+	            List<Consulta> consultasMesmoHorario = consultaRepository.findByVeterinario(veterinario);
+
+	            boolean conflito = consultasMesmoHorario.stream()
+	                    .anyMatch(c ->
+	                            c.getDataHora().equals(dto.getDataHora()) &&
+	                            !c.getId().equals(consulta.getId())
+	                    );
+
+	            if (conflito) {
+	                throw new RuntimeException("Já existe uma consulta para esse veterinário nesse horário");
+	            }
+	        }
+	    }
+
+	    consulta.setDataHora(dto.getDataHora());
+	    consulta.setMotivo(dto.getMotivo());
+	    consulta.setObservacao(dto.getObservacao());
+	    consulta.setValor(dto.getValor());
+	    consulta.setFormaPagamento(dto.getFormaPagamento());
+	    consulta.setPaga(dto.isPaga());
+	    consulta.setVeterinario(veterinario);
+
+	    consultaRepository.save(consulta);
+
+	    return toDto(consulta);
 	}
 	
 	public void excluir(Long id) {

@@ -41,8 +41,8 @@ function adicionarAnimal() {
             </div>
         </div>
         <div>
-            <button type="button" class="btn-vermelho" onclick="this.closest('.flex-box-animal').remove()">
-                <img class="img-icon" src="../assets/lixo.png" alt="lixeira">
+            <button type="button" class="btn-delete" onclick="this.closest('.flex-box-animal').remove()">
+                <span class="material-symbols-outlined"> delete </span>
             </button>
         </div>
     </div>

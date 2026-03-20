@@ -7,16 +7,15 @@
     gap: 10px;
 }
 
-.flex-box-tutores {
+.flex-box-consultas {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   align-content: start;
   justify-content: center;
   flex: 1;
   padding: 30px;
-  gap: 20px;
+  gap: 15px;
   height: auto;
-  background-color: var(--oliva); 
+  background-color: var(--oliva);
   border-radius: 10px;
 }
-
