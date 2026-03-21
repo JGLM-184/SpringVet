@@ -11,7 +11,7 @@ main.container {
 }
 
 .flex-box-login {
-    background-image: linear-gradient(135deg, var(--verde-escuro),  var(--verde-claro), var(--verde-escuro));  
+    background-image: radial-gradient(var(--verde-claro), var(--verde-escuro));  
     display: flex;
     flex: 1;
     height: 100%;
