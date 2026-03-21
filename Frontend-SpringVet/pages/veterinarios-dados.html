@@ -11,6 +11,14 @@
 <body>
     <nav id="navbar"></nav>
 
+    <div class="voltar">
+        <a class="btn-confirm" href="../pages/veterinarios.html">
+            <span class="material-symbols-outlined">
+                arrow_back
+            </span>
+        </a>
+    </div>
+
     <main class="container">
 
         <div class="flex-box-veterinario">
@@ -26,17 +34,22 @@
                 
                 <div class="card-btn">
                     
-                    <button id="btn-editar-veterinario" class="btn-info">
+                    <button id="btn-editar-veterinario" class="btn btn-secondary">
                         <span class="material-symbols-outlined">
                             edit
                         </span>
                     </button>
-                    <button class="btn-confirm">
+                    <button class="btn btn-info">
                         <span class="material-symbols-outlined">
                             history
                         </span>
                     </button>
-                    <button class="btn-delete">
+                    <button class="btn btn-danger">
+                        <span class="material-symbols-outlined">
+                            block
+                        </span>
+                    </button>
+                    <button class="btn btn-danger">
                         <span class="material-symbols-outlined">
                             delete
                         </span>
@@ -48,11 +61,11 @@
         <div class="flex-box-consultas">
             <h1>Agenda</h1>
             <div class="filtros">
-                <input class="input-text" type="search" placeholder="">
+                <input class="input-text" type="search" placeholder="Nome do animal">
 
                 <input class="input-text-secondary" type="date" name="" id="">
 
-                <button class="btn-search-secondary">Buscar</button>
+                <button class="btn btn-outline-light">Buscar</button>
             </div>
 
             <div></div>
@@ -65,7 +78,17 @@
 
         <form>
             <input class="input-text" type="text" name="nome" placeholder="Nome">
-            <input class="input-text" type="text" name="especialidade" placeholder="Especialidade">
+            <select class="input-text" name="especialidade">
+                <option value="">Especialidade</option>
+                <option>Geral</option>
+                <option>Dermatologia</option>
+                <option>Cardiologia</option>
+                <option>Oftalmologia</option>
+                <option>Ortopedia/Traumatologia</option>
+                <option>Oncologia</option>
+                <option>Anestesiologia</option>
+                <option>Odontologia</option>
+            </select>
             <input class="input-text" type="text" name="crmv" placeholder="CRMV">
             <input class="input-text" type="email" name="email" placeholder="Email">
             <input class="input-text" type="text" name="telefone" placeholder="Telefone">

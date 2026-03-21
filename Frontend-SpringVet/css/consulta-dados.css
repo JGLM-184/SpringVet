@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: 1fr 2fr;
     margin: 20px 10px 10px 10px;
-    height: calc(100vh - 120px);
+    height: auto;
     width: 90vw;
     border-radius: 15px;
     justify-self: center;
@@ -11,19 +11,18 @@
     padding: 10px;
 }
 
-.flex-box-veterinario {
+.flex-box-dados {
     display: flex;
     flex-direction: column;
-    background-color: var(--verde-claro);
+    background-color:var(--verde-claro);
     border-radius: 15px;
-    padding: 30px;
+    padding: 15px;
     height: 100%;
-    align-items: justify;
-    gap: 25px;
+    gap: 15px;
     color: var(--verde-escuro);
 }
 
-.dados-veterinario {
+.dados {
     flex: 1;
     background-color: var(--branco);
     border-radius: 15px;
@@ -31,32 +30,51 @@
     align-content: center;
 }
 
-.flex-box-consultas {
+
+.flex-box-consulta {
     display: flex;
-    background-color: var(--verde-claro);
+    background-color:var(--verde-claro);
+    color: var(--verde-escuro);
     flex-direction: column;
     border-radius: 15px;
     padding: 10px;
     gap: 10px;
-    max-height: 100%;
+    height: 100%;
     overflow-y: auto;
+    margin: 20px 10px;
+    font-size: 1em;
 }
 
-.perfil-veterinario {
+.consulta-header {
     display: flex;
-    align-self: center;
-    border-radius: 100%;
-    height: 175px;
-    width: 175px;
-    background-color: var(--branco);
+    justify-content: space-between;
+    align-items: center;
+}
+
+.consulta-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 10px;
 }
 
 h1 {
-    color: white;
+    color: var(--branco);
     font-size: 1.5em;
 }
 
-#modal-editar-veterinario form {
+h2 {
+    color: var(--verde-escuro);
+    font-size: 1.5em;
+}
+
+span {
+    color: var(--branco);
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+#modal-editar-consulta form {
     display: flex;
     flex-direction: column;
     gap: 8px;

@@ -17,7 +17,7 @@
     flex-direction: column;
     gap: 10px;
     padding: 20px;
-    background-color: var(--oliva);
+    background-color: var(--verde-claro);
     border-radius: 15px;
 }
 
@@ -42,7 +42,7 @@
 .col-animais {
     display: flex;
     flex-direction: column;
-    border: 2px solid var(--oliva);
+    border: 2px solid var(--verde-claro);
     border-radius: 15px;
     overflow-y: auto;
     gap: 10px;
@@ -54,7 +54,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: var(--oliva);
+    color: var(--verde-claro);
 }
 
 #lista-animais {
@@ -72,12 +72,12 @@
     padding:10px;
     margin-bottom:10px;
 
-    background: #d5c97b;
+    background: var(--verde-claro);
     border-radius:10px;
 }
 
 .flex-box-animal label {
-    color: black;
+    color: var(--branco);
 }
 
 .group-radio {
@@ -91,5 +91,5 @@
 }
 
 h2 {
-    color: var(--oliva);
+    color: var(--verde-claro);
 }
