@@ -14,9 +14,9 @@
 <main class="container">
 
     <div class="filtros">
-        <input class="input-text" type="text" placeholder="Nome do veterinário">
+        <input id="input-nome-vet" class="input-text" type="text" placeholder="Nome do veterinário">
 
-        <select class="input-text-secondary" name="especialidade">
+        <select id="select-especialidade" class="input-text-secondary" name="especialidade">
             <option value="">Especialidade</option>
             <option>Geral</option>
             <option>Dermatologia</option>
@@ -28,14 +28,11 @@
             <option>Odontologia</option>
         </select>
 
-        <select class="input-text-secondary" name="status">
-            <option value="">Status</option>
-            <option>Ativo</option>
-            <option>Inativo</option>
-
-        </select>
-        <button class="btn btn-outline">Buscar</button>
+            <input type="checkbox" id="check-inativos">
+            Inativos
         
+        <button id="btn-buscar-vet" class="btn btn-outline">Buscar</button>
+
         <a href="/pages/veterinarios-cadastro.html">
             <button class="btn btn-secondary">Novo</button>
         </a>
@@ -45,7 +42,7 @@
 </main>
 
 <script src="../js/navbar.js"></script>
-<script src="../js/card-veterinario.js"></script>
+<script src="../js/veterinarios.js"></script>
 </body>
 
 </html>

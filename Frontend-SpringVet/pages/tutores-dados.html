@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="../css/global.css">
     <link rel="stylesheet" href="../css/tutores-dados.css">
     <title>Dados Tutor</title>
@@ -23,13 +24,13 @@
 
     <main class="container">
         <div class="flex-box-tutor">
-            <div class="perfil-tutor">  </div>
+            <div class="perfil-tutor"> </div>
 
             <div class="dados-tutor">
-                <p><strong>Nome: </strong><span>João Gabriel</span></p>
-                <p><strong>CPF: </strong> <span>123.456.789.10</span></p>
-                <p><strong>Email: </strong><span>joaogabrielm591@gmail.com</span></p>
-                <p><strong>Telefone: </strong><span>(11) 97646-8515</span></p>
+                <p><strong>Nome: </strong> <span id="nome"></span> </p>
+                <p><strong>CPF: </strong> <span id="cpf"></span> </p>
+                <p><strong>Email: </strong> <span id="email"></span> </p>
+                <p><strong>Telefone: </strong> <span id="telefone"></span> </p>
 
                 <div class="card-btn">
                     <button id="btn-editar-tutor" class="btn btn-secondary">
@@ -37,7 +38,7 @@
                             edit
                         </span>
                     </button>
-                    <button class="btn btn-danger">
+                    <button id="btn-excluir-tutor" class="btn btn-danger">
                         <span class="material-symbols-outlined">
                             delete
                         </span>
@@ -48,10 +49,14 @@
         </div>
         <div class="flex-box-animais">
             <h1>Animais</h1>
+
             <div class="filtros">
-                <input class="input-text" type="text" placeholder="Nome do animal">
-                <button class="btn btn-outline-light">Buscar</button>
+                <input id="input-nome-animal" class="input-text" type="text" placeholder="Nome do animal">
+                <button id="btn-buscar-animal" class="btn btn-outline-light">Buscar</button>
                 <button id="btn-novo-animal" class="btn btn-secondary">Novo</button>
+            </div>
+
+            <div class="container-cards-animais">
             </div>
         </div>
     </main>
@@ -61,10 +66,10 @@
     <dialog id="modal-editar-tutor">
         <h2>Editar Tutor</h2>
         <form>
-            <input class="input-text" type="text" name="nome" placeholder="Nome">
-            <input class="input-text" type="text" name="cpf" placeholder="CPF">
-            <input class="input-text" type="email" name="email" placeholder="Email">
-            <input class="input-text" type="text" name="telefone" placeholder="Telefone">
+            <input class="input-text" required type="text" name="nome" placeholder="Nome">
+            <input class="input-text" required type="text" name="cpf" placeholder="CPF">
+            <input class="input-text" required type="email" name="email" placeholder="Email">
+            <input class="input-text" required type="text" name="telefone" placeholder="Telefone">
 
             <div class="modal-botoes">
                 <button id="cancelar-editar-tutor" class="btn btn-danger" type="button">Cancelar</button>
@@ -78,16 +83,16 @@
     <dialog id="modal-editar-animal">
         <h2>Editar Animal</h2>
         <form>
-            <input class="input-text" type="text" name="nome" placeholder="Nome">
+            <input class="input-text" required type="text" name="nome" placeholder="Nome">
             <select class="input-text" name="especie">
                 <option value="">Espécie</option>
                 <option>Cachorro</option>
                 <option>Gato</option>
             </select>
 
-            <input class="input-text" type="text" name="raca" placeholder="Raça">
+            <input class="input-text" required type="text" name="raca" placeholder="Raça">
 
-            <input class="input-text" type="text" name="cor" placeholder="Cor">
+            <input class="input-text" required type="text" name="cor" placeholder="Cor">
 
             <select class="input-text" name="sexo">
                 <option value="">Sexo</option>
@@ -95,12 +100,12 @@
                 <option>Fêmea</option>
             </select>
 
-            <input class="input-text" type="date" name="nasc" placeholder="Data de nascimento">
+            <input class="input-text" required type="date" name="nasc" placeholder="Data de nascimento">
 
             <label>Castrado?</label>
             <div class="group-radio">
                 <div>
-                    <input class="radio-btn" type="radio" name="castrado" value="true">
+                    <input class="radio-btn" required type="radio" name="castrado" value="true">
                     <label>Sim</label>
                 </div>
 
@@ -122,29 +127,30 @@
     <dialog id="modal-novo-animal">
         <h2>Novo Animal</h2>
         <form>
-            <input class="input-text" type="text" name="nome" placeholder="Nome">
-            <select class="input-text" name="especie">
-                <option value="">Espécie</option>
+            <input class="input-text" required type="text" name="nome" placeholder="Nome">
+
+            <select class="input-text" name="especie" required>
+                <option value="" disabled selected>Espécie</option>
                 <option>Cachorro</option>
                 <option>Gato</option>
             </select>
 
-            <input class="input-text" type="text" name="raca" placeholder="Raça">
+            <input class="input-text" required type="text" name="raca" placeholder="Raça">
 
-            <input class="input-text" type="text" name="cor" placeholder="Cor">
+            <input class="input-text" required type="text" name="cor" placeholder="Cor">
 
-            <select class="input-text" name="sexo">
-                <option value="">Sexo</option>
+            <select class="input-text" name="sexo" required>
+                <option value="" disabled selected>Sexo</option>
                 <option>Macho</option>
                 <option>Fêmea</option>
             </select>
 
-            <input class="input-text" type="date" name="nasc" placeholder="Data de nascimento">
+            <input class="input-text" required type="date" name="nasc" placeholder="Data de nascimento">
 
             <label>Castrado?</label>
             <div class="group-radio">
                 <div>
-                    <input class="radio-btn" type="radio" name="castrado" value="true">
+                    <input class="radio-btn" required type="radio" name="castrado" value="true">
                     <label>Sim</label>
                 </div>
 
@@ -156,7 +162,7 @@
 
             <div class="modal-botoes">
                 <button id="cancelar-novo-animal" class="btn btn-danger" type="button">Cancelar</button>
-                <button class="btn-confirm" type="submit">Salvar</button>
+                <button class="btn btn-primary" type="submit">Salvar</button>
             </div>
         </form>
     </dialog>
@@ -180,8 +186,9 @@
     </dialog>
 
     <script src="../js/navbar.js"></script>
-    <script src="../js/card-animais.js"></script>
-    <script src="../js/modais-tutor.js"></script>
+    <script src="../js/tutores-dados.js"></script>
+    <script src="../js/animais.js"></script>
+    <script src="../js/modais.js"></script>
 
 </body>
 

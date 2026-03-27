@@ -2,6 +2,7 @@ package com.joao.clinicaveterinaria.controller;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.joao.clinicaveterinaria.dto.TutorDto;
@@ -16,6 +18,7 @@ import com.joao.clinicaveterinaria.service.TutorService;
 
 import jakarta.validation.Valid;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/tutor")
 public class TutorController {
@@ -30,6 +33,16 @@ public class TutorController {
 	@GetMapping()
 	public List<TutorDto> listar() {
 		return tutorService.listar();
+	}
+	
+	@GetMapping("/{id}")
+	public TutorDto buscarPorId(@PathVariable Long id) {
+	    return tutorService.buscarPorId(id);
+	}
+	
+	@GetMapping("/buscar")
+	public List<TutorDto> buscarPorNome(@RequestParam String nome) {
+	    return tutorService.buscarPorNome(nome);
 	}
 	
 	@PostMapping

@@ -5,8 +5,10 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.joao.clinicaveterinaria.dto.TutorDto;
 import com.joao.clinicaveterinaria.dto.VeterinarioDto;
 import com.joao.clinicaveterinaria.exception.ResourceNotFoundException;
+import com.joao.clinicaveterinaria.model.entity.Tutor;
 import com.joao.clinicaveterinaria.model.entity.Veterinario;
 import com.joao.clinicaveterinaria.repository.VeterinarioRepository;
 
@@ -38,15 +40,51 @@ public class VeterinarioService {
 		return toDto(veterinario);		
 	}
 	
-	public VeterinarioDto buscarPorNome(String nome) {
-		Veterinario veterinario = veterinarioRepository.findByNome(nome)
-				.orElseThrow(() -> new ResourceNotFoundException("Veterinário não encontrado"));
-				
-		return toDto(veterinario);		
+	public List<VeterinarioDto> buscar(String nome, String especialidade, String status) {
+
+	    List<Veterinario> veterinarios = veterinarioRepository.findAll();
+	    List<VeterinarioDto> resultado = new ArrayList<>();
+
+	    for (Veterinario veterinario : veterinarios) {
+
+	        boolean match = true;
+
+	        // NOME
+	        if (nome != null && !nome.isBlank()) {
+	            if (!veterinario.getNome().toLowerCase().contains(nome.toLowerCase())) {
+	                match = false;
+	            }
+	        }
+
+	        // ESPECIALIDADE
+	        if (especialidade != null && !especialidade.isBlank()) {
+	            if (!veterinario.getEspecialidade().equalsIgnoreCase(especialidade)) {
+	                match = false;
+	            }
+	        }
+
+	        // STATUS (boolean)
+	        if (status != null && !status.isBlank()) {
+
+	            boolean ativoFiltro = status.equalsIgnoreCase("Ativo");
+
+	            if (veterinario.isAtivo() != ativoFiltro) {
+	                match = false;
+	            }
+	        }
+
+	        if (match) {
+	            resultado.add(toDto(veterinario));
+	        }
+	    }
+
+	    return resultado;
 	}
 
 	public VeterinarioDto criar(VeterinarioDto dto) {
 	    Veterinario veterinario = toVeterinario(dto);
+	    
+	    veterinario.setAtivo(true);
 	    
 	    veterinarioRepository.save(veterinario);
 	    
@@ -113,6 +151,7 @@ public class VeterinarioService {
 		dto.setCrmv(veterinario.getCrmv());
 		dto.setTelefone(veterinario.getTelefone());
 		dto.setEmail(veterinario.getEmail());
+		dto.setAtivo(veterinario.isAtivo());
 		
 		return dto;
 	}

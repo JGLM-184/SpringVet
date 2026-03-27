@@ -1,29 +1,21 @@
 <div class="card">
     <div class="card-titulo">
-        <h3>Nome do Animal</h3>
+        <h3>{{nome}}</h3>
     </div>
     <div class="card-info">
-        <p><strong>Espécie: </strong></p>
-
-        <div class="linha">
-            <p><strong>Raça: </strong></p>
-        </div>
+        <p><strong>Espécie: </strong>{{especie}}</p>
+        <p><strong>Raça: </strong>{{raca}}</p>
+        <p><strong>Cor: </strong>{{cor}}</p>
     </div>
     <div class="card-btn">
         <button class="btn-editar-animal btn btn-secondary">
-            <span class="material-symbols-outlined">
-                edit
-            </span>    
+            <span class="material-symbols-outlined">edit</span>    
         </button>
-        <button id="btn-historico-animal" class="btn btn-info">
-            <span class="material-symbols-outlined">
-                history
-            </span>    
+        <button class="btn-historico-animal btn btn-info">
+            <span class="material-symbols-outlined">history</span>    
         </button>
-        <button id="btn-nova-consulta" class="btn btn-primary">
-            <span class="material-symbols-outlined">
-                ecg_heart
-            </span> 
+        <button class="btn-nova-consulta btn btn-primary">
+            <span class="material-symbols-outlined">ecg_heart</span> 
         </button>
     </div>
 </div>

@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: 1fr 2fr;
     margin: 20px 10px 10px 10px;
-    height: calc(100vh - 120px);
+    height: auto;
     width: 90vw;
     border-radius: 15px;
     justify-self: center;
@@ -28,6 +28,7 @@
     border-radius: 15px;
     padding: 15px;
     align-content: center;
+    height: 100%;
 }
 
 .perfil-tutor {
@@ -41,13 +42,32 @@
 
 .flex-box-animais {
     display: flex;
-    background-color:var(--verde-claro);
     flex-direction: column;
+    background-color: var(--verde-claro);
     border-radius: 15px;
     padding: 10px;
     gap: 10px;
-    max-height: 100%;
+    height: 100%;
+}
+
+.container-cards-animais {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
     overflow-y: auto;
+    max-height: 400px;
+    padding-right: 5px;
+}
+
+ .container-cards-animais > p {
+  color: var(--branco);
+  font-size: 1em;
+  font-weight: 600;
+}
+
+.container-cards-animais .card {
+    width: 100%;
+    box-sizing: border-box;
 }
 
 h1 {

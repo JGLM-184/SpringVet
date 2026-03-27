@@ -7,31 +7,31 @@ function adicionarAnimal() {
     const novoAnimal = document.createElement("div");
 
     novoAnimal.innerHTML = `
-    <div class="flex-box-animal">
-        <input class="input-text" type="text" name="animais[${contador}].nome" placeholder="Nome">
+    <div class="flex-box-animal animal-form">
+        <input class="input-text" required type="text" name="animais[${contador}].nome" placeholder="Nome">
 
-        <select class="input-text" name="animais[${contador}].especie">
-            <option value="">Espécie</option>
+        <select class="input-text" name="animais[${contador}].especie" required>
+            <option value="" disabled selected>Espécie</option>
             <option>Cachorro</option>
             <option>Gato</option>
         </select>
 
-        <input class="input-text" type="text" name="animais[${contador}].raca" placeholder="Raça">
+        <input class="input-text" required type="text" name="animais[${contador}].raca" placeholder="Raça">
 
-        <input class="input-text" type="text" name="animais[${contador}].cor" placeholder="Cor">
+        <input class="input-text" required type="text" name="animais[${contador}].cor" placeholder="Cor">
 
-        <select class="input-text" name="animais[${contador}].sexo">
-            <option value="">Sexo</option>
+        <select class="input-text" name="animais[${contador}].sexo" required>
+            <option value="" disabled selected>Sexo</option>
             <option>Macho</option>
             <option>Fêmea</option>
         </select>
 
-        <input class="input-text" type="date" name="animais[${contador}].nasc" placeholder="Data de nascimento">
+        <input class="input-text" required type="date" name="animais[${contador}].nasc" placeholder="Data de nascimento">
 
         <label>Castrado?</label>
         <div class="group-radio">
             <div>
-                <input class="radio-btn" type="radio" name="animais[${contador}].castrado" value="true">
+                <input class="radio-btn" required type="radio" name="animais[${contador}].castrado" value="true" >
                 <label>Sim</label>
             </div>
 

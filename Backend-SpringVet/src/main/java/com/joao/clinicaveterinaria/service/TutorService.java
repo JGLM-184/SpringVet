@@ -38,12 +38,17 @@ public class TutorService {
 		return tutoresDto;
 	}
 	
-	public TutorDto buscarPorNome(String nome) {
-		
-		Tutor tutor = tutorRepository.findByNome(nome)
-				.orElseThrow(() -> new ResourceNotFoundException("Tutor não encontrado"));
-		
-		return toDto(tutor);
+	public List<TutorDto> buscarPorNome(String nome) {
+
+	    List<Tutor> tutores = tutorRepository.findByNomeContainingIgnoreCase(nome);
+
+	    List<TutorDto> tutoresDto = new ArrayList<>();
+
+	    for (Tutor tutor : tutores) {
+	        tutoresDto.add(toDto(tutor));
+	    }
+
+	    return tutoresDto;
 	}
 	
 	public TutorDto buscarPorId(Long id) {

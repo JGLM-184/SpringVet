@@ -23,14 +23,15 @@ public class AnimalDto {
 	private LocalDate nasc;
 	@NotNull(message="A informação de castração é obrigatória")
 	private boolean castrado;
-	private Tutor tutor;
+	private Long tutorId;
+	private String nomeTutor;
 	
 	public AnimalDto() {
 		
 	}
 
 	public AnimalDto(Long id, String nome, String especie, String raca, String cor, String sexo, LocalDate nasc,
-			boolean castrado) {
+			boolean castrado, Long tutorId, String nomeTutor) {
 		this.id = id;
 		this.nome = nome;
 		this.especie = especie;
@@ -39,7 +40,10 @@ public class AnimalDto {
 		this.sexo = sexo;
 		this.nasc = nasc;
 		this.castrado = castrado;
+		this.tutorId = tutorId;
+		this.nomeTutor = nomeTutor;
 	}
+
 
 	public Long getId() {
 		return id;
@@ -105,12 +109,22 @@ public class AnimalDto {
 		this.castrado = castrado;
 	}
 
-	public Tutor getTutor() {
-		return tutor;
+	public Long getTutorId() {
+		return tutorId;
 	}
 
-	public void setTutor(Tutor tutor) {
-		this.tutor = tutor;
+	public void setTutorId(Long tutorId) {
+		this.tutorId = tutorId;
 	}
+
+	public String getNomeTutor() {
+		return nomeTutor;
+	}
+
+	public void setNomeTutor(String nomeTutor) {
+		this.nomeTutor = nomeTutor;
+	}
+
+	
 	
 }

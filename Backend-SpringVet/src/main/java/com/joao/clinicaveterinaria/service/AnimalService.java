@@ -25,6 +25,7 @@ public class AnimalService {
 
 	}
 	
+	
 	public List<AnimalDto> listarTodos (){
 		List<Animal> animais = animalRepository.findAll();
 		List<AnimalDto> animaisDto = new ArrayList<>();
@@ -38,6 +39,18 @@ public class AnimalService {
 		return animaisDto;
 	}
 	
+	
+	public List<AnimalDto> buscarPorTutor(Long id) {
+		List<Animal> animais = animalRepository.findByTutorId(id);
+		List<AnimalDto> animaisDto = new ArrayList<>();
+		for (Animal animal : animais) {
+			animaisDto.add(toDto(animal));
+		}
+		
+		return animaisDto;
+		
+	}
+	
 	public AnimalDto buscarPorId(Long id) {
 		Animal animal = animalRepository.findById(id)	
 				.orElseThrow(() -> new ResourceNotFoundException("Animal não encontrado"));
@@ -45,11 +58,16 @@ public class AnimalService {
 		return toDto(animal);
 	}	
 	
-	public AnimalDto buscarPorNome(String nome) {
-		Animal animal =  animalRepository.findByNome(nome)
-				.orElseThrow(() -> new ResourceNotFoundException("Animal não encontrado"));
-				
-		return toDto(animal);
+	public List<AnimalDto> buscarPorNome(Long id, String nome) {
+		List<Animal> animais = animalRepository.findByTutorIdAndNomeContainingIgnoreCase(id, nome);
+
+	    List<AnimalDto> animaisDto = new ArrayList<>();
+
+	    for (Animal animal : animais) {
+	    	animaisDto.add(toDto(animal));
+	    }
+
+	    return animaisDto;
 	}
 	
 	public AnimalDto criar(AnimalDto dto, Long id) {
@@ -128,6 +146,11 @@ public class AnimalService {
 		dto.setSexo(animal.getSexo());
 		dto.setNasc(animal.getNasc());
 		dto.setCastrado(animal.isCastrado());
+
+		if (animal.getTutor() != null) {
+	        dto.setTutorId(animal.getTutor().getId());
+	        dto.setNomeTutor(animal.getTutor().getNome());
+	    }
 		
 		return dto;
 	}

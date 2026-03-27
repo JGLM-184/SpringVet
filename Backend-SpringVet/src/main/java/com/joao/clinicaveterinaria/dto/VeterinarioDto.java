@@ -1,5 +1,6 @@
 package com.joao.clinicaveterinaria.dto;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
 public class VeterinarioDto{
@@ -13,9 +14,10 @@ public class VeterinarioDto{
 	private String crmv;
 	@NotBlank(message = "O telefone é obrigatório")
 	private String telefone;
+	@Email(message = "Email inválido")
 	@NotBlank(message = "O email é obrigatório")
 	private String email;
-	private boolean ativo;
+	private Boolean ativo;
 	
 	public VeterinarioDto() {
 		
@@ -79,11 +81,11 @@ public class VeterinarioDto{
 		this.email = email;
 	}
 
-	public boolean isAtivo() {
+	public Boolean isAtivo() {
 		return ativo;
 	}
 
-	public void setAtivo(boolean ativo) {
+	public void setAtivo(Boolean ativo) {
 		this.ativo = ativo;
 	}
 	
