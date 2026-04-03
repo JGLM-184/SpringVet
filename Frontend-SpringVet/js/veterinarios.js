@@ -41,11 +41,16 @@ function renderVeterinarios(veterinarios) {
   }
 
   veterinarios.forEach(vet => {
+    const statusTexto = vet.ativo ? "Ativo" : "Inativo";
+    const statusClass = vet.ativo ? "ativo" : "inativo";
+
     let cardHTML = templateCardVet
       .replace("{{nome}}", vet.nome)
       .replace("{{especialidade}}", vet.especialidade)
       .replace("{{telefone}}", vet.telefone || "—")
-      .replace("{{id}}", vet.id);
+      .replace("{{id}}", vet.id)
+      .replace("{{status}}", statusTexto)
+      .replace("{{statusClass}}", statusClass);
 
     container.innerHTML += cardHTML;
   });

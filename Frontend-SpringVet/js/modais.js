@@ -83,6 +83,18 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // =========================
+    // NOVA CONSULTA
+    // =========================
+    const modalNovaConsulta = document.getElementById("modal-nova-consulta");
+    const btnCancelarNovaConsulta = document.getElementById("cancelar-nova-consulta");
+
+    if (btnCancelarNovaConsulta && modalNovaConsulta) {
+        btnCancelarNovaConsulta.addEventListener("click", () => {
+            modalNovaConsulta.close();
+        });
+    }
+
 
     // =========================
     // EDITAR CONSULTA

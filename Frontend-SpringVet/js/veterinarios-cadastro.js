@@ -15,7 +15,6 @@ if (form) {
             crmv: form.crmv.value.trim(),
             telefone: form.telefone.value.trim(),
             email: form.email.value.trim(),
-            ativo: true
         };
 
         criarVeterinario(dados);

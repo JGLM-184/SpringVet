@@ -45,6 +45,11 @@ public class TutorController {
 	    return tutorService.buscarPorNome(nome);
 	}
 	
+	@GetMapping("/total")
+	public long totalTutores() {
+		return tutorService.totalTutores();
+	}
+	
 	@PostMapping
 	public TutorDto salvar(@Valid @RequestBody TutorDto dto) {
 		return tutorService.criar(dto);

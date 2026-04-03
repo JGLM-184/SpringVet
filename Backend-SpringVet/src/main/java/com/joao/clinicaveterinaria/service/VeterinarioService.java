@@ -5,10 +5,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.joao.clinicaveterinaria.dto.TutorDto;
 import com.joao.clinicaveterinaria.dto.VeterinarioDto;
 import com.joao.clinicaveterinaria.exception.ResourceNotFoundException;
-import com.joao.clinicaveterinaria.model.entity.Tutor;
 import com.joao.clinicaveterinaria.model.entity.Veterinario;
 import com.joao.clinicaveterinaria.repository.VeterinarioRepository;
 
@@ -68,7 +66,7 @@ public class VeterinarioService {
 
 	            boolean ativoFiltro = status.equalsIgnoreCase("Ativo");
 
-	            if (veterinario.isAtivo() != ativoFiltro) {
+	            if (veterinario.getAtivo() != ativoFiltro) {
 	                match = false;
 	            }
 	        }
@@ -79,6 +77,10 @@ public class VeterinarioService {
 	    }
 
 	    return resultado;
+	}
+	
+	public long totalVeterinariosAtivo() {
+		return veterinarioRepository.countByAtivoTrue();
 	}
 
 	public VeterinarioDto criar(VeterinarioDto dto) {
@@ -127,7 +129,7 @@ public class VeterinarioService {
 		
 		veterinario.setAtivo(true);
 		veterinarioRepository.save(veterinario);
-	}
+	}	
 	
 	//----------------------------------------------
 	private Veterinario toVeterinario(VeterinarioDto dto ) {
@@ -151,7 +153,7 @@ public class VeterinarioService {
 		dto.setCrmv(veterinario.getCrmv());
 		dto.setTelefone(veterinario.getTelefone());
 		dto.setEmail(veterinario.getEmail());
-		dto.setAtivo(veterinario.isAtivo());
+		dto.setAtivo(veterinario.getAtivo());
 		
 		return dto;
 	}

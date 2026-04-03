@@ -41,6 +41,10 @@ public class VeterinarioController {
 		return veterinarioService.buscarPorId(id);
 	}
 	
+	@GetMapping("/total")
+	public long totalVeterinariosAtivo() {
+		return veterinarioService.totalVeterinariosAtivo();
+	}
 
 	@GetMapping("/buscar")
 	public List<VeterinarioDto> buscar(

@@ -4,9 +4,6 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-import com.joao.clinicaveterinaria.model.entity.Animal;
-import com.joao.clinicaveterinaria.model.entity.Veterinario;
-
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -25,18 +22,21 @@ public class ConsultaDto {
 	private BigDecimal valor;
 	@NotBlank(message = "A forma de pagamento é obrigatória")
 	private String formaPagamento;
-	private boolean paga;
+	private Boolean paga;
 	private LocalDate dataCriacao;
-	private Animal animal;
-	private Veterinario veterinario;
+	private Long animalId;
+	private String animalNome;
+	private Long veterinarioId;
+	private String veterinarioNome;
+	private String tutorNome;
 	
 	public ConsultaDto() {
 		
 	}
 
 	public ConsultaDto(Long id, LocalDateTime dataHora, String status, String motivo, String observacao,
-			BigDecimal valor, String formaPagamento, boolean paga, LocalDate dataCriacao, Animal animal,
-			Veterinario veterinario) {
+			BigDecimal valor, String formaPagamento, Boolean paga, LocalDate dataCriacao, Long animalId,
+			String animalNome, Long veterinarioId, String veterinarioNome, String tutorNome) {
 		this.id = id;
 		this.dataHora = dataHora;
 		this.status = status;
@@ -46,8 +46,12 @@ public class ConsultaDto {
 		this.formaPagamento = formaPagamento;
 		this.paga = paga;
 		this.dataCriacao = dataCriacao;
-		this.animal = animal;
-		this.veterinario = veterinario;
+		this.animalId = animalId;
+		this.animalNome = animalNome;
+		this.veterinarioId = veterinarioId;
+		this.veterinarioNome = veterinarioNome;
+		this.tutorNome = tutorNome;
+
 	}
 
 	public Long getId() {
@@ -106,11 +110,11 @@ public class ConsultaDto {
 		this.formaPagamento = formaPagamento;
 	}
 
-	public boolean isPaga() {
+	public Boolean getPaga() {
 		return paga;
 	}
 
-	public void setPaga(boolean paga) {
+	public void setPaga(Boolean paga) {
 		this.paga = paga;
 	}
 
@@ -122,21 +126,45 @@ public class ConsultaDto {
 		this.dataCriacao = dataCriacao;
 	}
 
-	public Animal getAnimal() {
-		return animal;
+	public Long getAnimalId() {
+		return animalId;
 	}
 
-	public void setAnimal(Animal animal) {
-		this.animal = animal;
+	public void setAnimalId(Long animalId) {
+		this.animalId = animalId;
 	}
 
-	public Veterinario getVeterinario() {
-		return veterinario;
+	public String getAnimalNome() {
+		return animalNome;
 	}
 
-	public void setVeterinario(Veterinario veterinario) {
-		this.veterinario = veterinario;
+	public void setAnimalNome(String animalNome) {
+		this.animalNome = animalNome;
 	}
-	
+
+	public Long getVeterinarioId() {
+		return veterinarioId;
+	}
+
+	public void setVeterinarioId(Long veterinarioId) {
+		this.veterinarioId = veterinarioId;
+	}
+
+	public String getVeterinarioNome() {
+		return veterinarioNome;
+	}
+
+	public void setVeterinarioNome(String veterinarioNome) {
+		this.veterinarioNome = veterinarioNome;
+	}
+
+	public String getTutorNome() {
+		return tutorNome;
+	}
+
+	public void setTutorNome(String tutorNome) {
+		this.tutorNome = tutorNome;
+	}
+
 	
 }

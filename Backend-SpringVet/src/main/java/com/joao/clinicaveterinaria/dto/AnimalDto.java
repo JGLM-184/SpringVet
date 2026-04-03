@@ -1,8 +1,6 @@
 package com.joao.clinicaveterinaria.dto;
 import java.time.LocalDate;
 
-import com.joao.clinicaveterinaria.model.entity.Tutor;
-
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 

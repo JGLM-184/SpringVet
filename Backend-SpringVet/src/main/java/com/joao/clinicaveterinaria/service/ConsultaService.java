@@ -1,19 +1,20 @@
 package com.joao.clinicaveterinaria.service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
 import com.joao.clinicaveterinaria.dto.ConsultaDto;
+import com.joao.clinicaveterinaria.exception.BusinessException;
 import com.joao.clinicaveterinaria.exception.ResourceNotFoundException;
 import com.joao.clinicaveterinaria.model.entity.Animal;
 import com.joao.clinicaveterinaria.model.entity.Consulta;
-import com.joao.clinicaveterinaria.model.entity.Tutor;
 import com.joao.clinicaveterinaria.model.entity.Veterinario;
 import com.joao.clinicaveterinaria.repository.AnimalRepository;
 import com.joao.clinicaveterinaria.repository.ConsultaRepository;
-import com.joao.clinicaveterinaria.repository.TutorRepository;
 import com.joao.clinicaveterinaria.repository.VeterinarioRepository;
 
 @Service
@@ -22,18 +23,20 @@ public class ConsultaService {
 	private final ConsultaRepository consultaRepository;
 	private final VeterinarioRepository veterinarioRepository;
 	private final AnimalRepository animalRepository;
-	private final TutorRepository tutorRepository;
 
 			
 	public ConsultaService(ConsultaRepository consultaRepository, VeterinarioRepository veterinarioRepository, 
-			AnimalRepository animalRepository, TutorRepository tutorRepository) {
+			AnimalRepository animalRepository) {
 		this.consultaRepository = consultaRepository;
 		this.veterinarioRepository = veterinarioRepository;
 		this.animalRepository = animalRepository;
-		this.tutorRepository = tutorRepository;
 
 	}
 	
+	
+	
+	// CONSULTAS / GET
+
 	public List<ConsultaDto> listar() {
 		List<Consulta> consultas = consultaRepository.findAll();
 		List<ConsultaDto> consultasDto = new ArrayList<>();
@@ -46,20 +49,39 @@ public class ConsultaService {
 		return consultasDto;
 	}
 	
-	public List<ConsultaDto> buscarPorTutor(Long id) {
-		Tutor tutor = tutorRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("Tutor não encontrado"));
+	public List<ConsultaDto> consultasHoje() {
 		
-		List<Consulta> consultasTutor = consultaRepository.findByAnimalTutor(tutor);
-		List<ConsultaDto> consultasTutorDto = new ArrayList<>();
-		for (Consulta consulta : consultasTutor) {
-			ConsultaDto dto = toDto(consulta);
-			consultasTutorDto.add(dto);
-		}
+		LocalDate hoje = LocalDate.now();
+
+		LocalDateTime inicio = hoje.atStartOfDay();
+		LocalDateTime fim = hoje.atTime(23, 59, 59);
+
+		List<Consulta> consultas = consultaRepository.findByDataHoraBetween(inicio, fim);
+		List<ConsultaDto> consultasDto = new ArrayList<>();
 		
-		return consultasTutorDto;
+		for (Consulta consulta : consultas) {
+				ConsultaDto dto = toDto(consulta);
+				consultasDto.add(dto);
+			}
+		
+		return consultasDto;
 	}
 	
+	public int totalAgendada() {
+		return consultaRepository.countByStatus("AGENDADA");
+	}
+	
+	public int totalHoje() {
+		LocalDate hoje = LocalDate.now();
+
+		LocalDateTime inicio = hoje.atStartOfDay();
+		LocalDateTime fim = hoje.atTime(23, 59, 59);
+
+		List<Consulta> consultas = consultaRepository.findByDataHoraBetween(inicio, fim);
+		
+		return consultas.size();
+	}
+		
 	public List<ConsultaDto> buscarPorVeterinario(Long id) {
 		Veterinario veterinario = veterinarioRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Veterinário não encontrado"));
@@ -87,6 +109,8 @@ public class ConsultaService {
 		
 		return consultasAnimalDto;
 	}
+	
+	//-------------------------------
 
 	public ConsultaDto criar(Long idAnimal, Long idVeterinario, ConsultaDto dto) {		
 		Animal animal = animalRepository.findById(idAnimal)
@@ -96,7 +120,7 @@ public class ConsultaService {
 				.orElseThrow(() -> new ResourceNotFoundException("Veterinario não encontrado"));
 		
 		if (consultaRepository.existsByVeterinarioAndDataHora(veterinario, dto.getDataHora())) {
-		    throw new RuntimeException("Já existe uma consulta para esse veterinário nesse horário");
+		    throw new BusinessException("Já existe uma consulta para esse veterinário nesse horário");
 		}
 		
 		Consulta consulta = toConsulta(dto);
@@ -135,7 +159,7 @@ public class ConsultaService {
 	                    );
 
 	            if (conflito) {
-	                throw new RuntimeException("Já existe uma consulta para esse veterinário nesse horário");
+	                throw new BusinessException("Já existe uma consulta para esse veterinário nesse horário");
 	            }
 	        }
 	    }
@@ -145,13 +169,34 @@ public class ConsultaService {
 	    consulta.setObservacao(dto.getObservacao());
 	    consulta.setValor(dto.getValor());
 	    consulta.setFormaPagamento(dto.getFormaPagamento());
-	    consulta.setPaga(dto.isPaga());
+	    consulta.setPaga(dto.getPaga());
 	    consulta.setVeterinario(veterinario);
 
 	    consultaRepository.save(consulta);
 
 	    return toDto(consulta);
 	}
+	
+	public void cancelarConsulta(Long id) {
+		Consulta consulta = consultaRepository.findById(id).
+				orElseThrow(() -> new ResourceNotFoundException("Consulta não encontrada"));
+		
+		consulta.setStatus("CANCELADA");
+		
+		consultaRepository.save(consulta);
+		
+	}
+	
+	public void finalizarConsulta(Long id) {
+		Consulta consulta = consultaRepository.findById(id).
+				orElseThrow(() -> new ResourceNotFoundException("Consulta não encontrada"));
+		
+		consulta.setStatus("FINALIZADA");
+		consulta.setPaga(true);
+		consultaRepository.save(consulta);
+	}
+	
+	
 	
 	public void excluir(Long id) {
 		Consulta consulta = consultaRepository.findById(id)
@@ -165,12 +210,13 @@ public class ConsultaService {
 		Consulta consulta = new Consulta();
 		
 		consulta.setDataHora(dto.getDataHora());
-		consulta.setStatus(dto.getStatus());
+		consulta.setStatus("AGENDADA");
 		consulta.setMotivo(dto.getMotivo());
 		consulta.setObservacao(dto.getObservacao());
 		consulta.setValor(dto.getValor());
-		consulta.setPaga(dto.isPaga());
-		consulta.setDataCriacao(dto.getDataCriacao());
+		consulta.setFormaPagamento(dto.getFormaPagamento());
+		consulta.setPaga(false);
+		consulta.setDataCriacao(LocalDate.now());
 		
 		return consulta;
 	}
@@ -178,6 +224,7 @@ public class ConsultaService {
 	private ConsultaDto toDto(Consulta consulta) {
 		ConsultaDto dto = new ConsultaDto();
 		
+		dto.setId(consulta.getId());
 		dto.setDataHora(consulta.getDataHora());
 		dto.setStatus(consulta.getStatus());
 		dto.setMotivo(consulta.getMotivo());
@@ -185,8 +232,12 @@ public class ConsultaService {
 		dto.setValor(consulta.getValor());
 		dto.setPaga(consulta.isPaga());
 		dto.setDataCriacao(consulta.getDataCriacao());
-		dto.setAnimal(consulta.getAnimal());
-		dto.setVeterinario(consulta.getVeterinario());
+		dto.setAnimalId(consulta.getAnimal().getId());
+		dto.setAnimalNome(consulta.getAnimal().getNome());
+		dto.setVeterinarioId(consulta.getVeterinario().getId());
+		dto.setVeterinarioNome(consulta.getVeterinario().getNome());
+		dto.setTutorNome(consulta.getAnimal().getTutor().getNome());
+
 		
 		return dto;
 	}

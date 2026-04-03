@@ -17,14 +17,14 @@ public class Veterinario {
 	private String crmv;
 	private String telefone;
 	private String email;
-	private boolean ativo;
+	private Boolean ativo;
 	
 	public Veterinario() {
 		
 	}
 
 	public Veterinario(Long id, String nome, String especialidade, String crmv, String telefone, String email,
-			boolean ativo) {
+			Boolean ativo) {
 		this.id = id;
 		this.nome = nome;
 		this.especialidade = especialidade;
@@ -82,13 +82,12 @@ public class Veterinario {
 		this.email = email;
 	}
 
-	public boolean isAtivo() {
+	public Boolean getAtivo() {
 		return ativo;
 	}
 
-	public void setAtivo(boolean ativo) {
+	public void setAtivo(Boolean ativo) {
 		this.ativo = ativo;
 	}
-	
 	
 }

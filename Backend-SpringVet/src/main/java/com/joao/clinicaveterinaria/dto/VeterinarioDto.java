@@ -23,7 +23,7 @@ public class VeterinarioDto{
 		
 	}
 	
-	public VeterinarioDto(Long id, String nome, String especialidade, String crmv, String telefone, String email, boolean ativo) {
+	public VeterinarioDto(Long id, String nome, String especialidade, String crmv, String telefone, String email, Boolean ativo) {
 		this.id = id;
 		this.nome = nome;
 		this.especialidade = especialidade;
@@ -81,13 +81,15 @@ public class VeterinarioDto{
 		this.email = email;
 	}
 
-	public Boolean isAtivo() {
+	public Boolean getAtivo() {
 		return ativo;
 	}
 
 	public void setAtivo(Boolean ativo) {
 		this.ativo = ativo;
 	}
+
+
 	
 	
 	

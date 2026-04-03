@@ -2,6 +2,7 @@ package com.joao.clinicaveterinaria.controller;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,8 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.joao.clinicaveterinaria.dto.ConsultaDto;
 import com.joao.clinicaveterinaria.service.ConsultaService;
 
+import jakarta.validation.Valid;
+
+@CrossOrigin (origins = "*")
 @RestController
-@RequestMapping("/consulta")
+@RequestMapping("/consultas")
 public class ConsultaController {
 
 	private final ConsultaService consultaService;
@@ -29,9 +33,19 @@ public class ConsultaController {
 		return consultaService.listar();
 	}
 	
-	@GetMapping("/tutor/{id}")
-	public List<ConsultaDto> buscarPorTutor(@PathVariable Long id) {
-		return consultaService.buscarPorTutor(id);
+	@GetMapping("total")
+	public int totalConsulta() {
+		return consultaService.totalAgendada();
+	}
+	
+	@GetMapping("/hoje")
+	public List<ConsultaDto> ConsultasDiarias() {
+		return consultaService.consultasHoje();
+	}
+	
+	@GetMapping("total/hoje")
+	public int totalConsultaHoje() {
+		return consultaService.totalHoje();
 	}
 	
 	@GetMapping("/animal/{id}")
@@ -45,13 +59,23 @@ public class ConsultaController {
 	}
 	
 	@PostMapping("/animal/{idAnimal}/veterinario/{idVeterinario}")
-	public ConsultaDto criar(@PathVariable Long idAnimal, @PathVariable Long idVeterinario, @RequestBody ConsultaDto dto) {
+	public ConsultaDto criar(@PathVariable Long idAnimal, @PathVariable Long idVeterinario, @Valid @RequestBody ConsultaDto dto) {
 		return consultaService.criar(idAnimal, idVeterinario, dto);
 	}
 	
 	@PutMapping("/{id}/veterinario/{idVeterinario}")
-	public ConsultaDto alterar(@PathVariable Long id, @PathVariable Long idVeterinario, @RequestBody ConsultaDto dto) {
+	public ConsultaDto alterar(@PathVariable Long id, @PathVariable Long idVeterinario, @Valid @RequestBody ConsultaDto dto) {
 		return consultaService.alterar(id, idVeterinario, dto);
+	}
+	
+	@PutMapping("/{id}/cancelar")
+	public void cancelarConsulta(@PathVariable Long id) {
+		consultaService.cancelarConsulta(id);
+	}
+	
+	@PutMapping("/{id}/finalizar")
+	public void finalizarConsulta(@PathVariable Long id) {
+		consultaService.finalizarConsulta(id);
 	}
 	
 	@DeleteMapping("/{id}")

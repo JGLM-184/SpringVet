@@ -24,7 +24,7 @@ public class Consulta {
 	private String observacao;
 	private BigDecimal valor;
 	private String formaPagamento;
-	private boolean paga;
+	private Boolean paga;
 	private LocalDate dataCriacao;
 	@ManyToOne
 	@JoinColumn(name = "animal_id")
@@ -38,7 +38,7 @@ public class Consulta {
 	}
 	
 	public Consulta(Long id, LocalDateTime dataHora, String status, String motivo, String observacao, BigDecimal valor,
-			String formaPagamento, boolean paga, LocalDate dataCriacao, Animal animal, Veterinario veterinario) {
+			String formaPagamento, Boolean paga, LocalDate dataCriacao, Animal animal, Veterinario veterinario) {
 		this.id = id;
 		this.dataHora = dataHora;
 		this.status = status;
@@ -108,11 +108,11 @@ public class Consulta {
 		this.formaPagamento = formaPagamento;
 	}
 
-	public boolean isPaga() {
+	public Boolean isPaga() {
 		return paga;
 	}
 
-	public void setPaga(boolean paga) {
+	public void setPaga(Boolean paga) {
 		this.paga = paga;
 	}
 

@@ -1,22 +1,24 @@
 <div class="card">
 
     <div class="card-titulo">
-        <h3>Nome do Animal</h3>
+        <h3>{{animal}}</h3>
     </div>
 
     <div class="card-info">
-        <p><strong>Veterinário:</strong></p>
+        <p><strong>Veterinário:</strong> {{veterinario}}</p>
 
+        <p><strong>Tutor:</strong> {{tutor}}</p>
+        <p><strong>Data:</strong> {{dataHora}}</p>
+
+        <p><strong>Motivo:</strong> {{motivo}}</p>
+        
         <div class="linha">
-            <p><strong>Tutor: </strong></p>
-            <p><strong>Data: </strong></p>
+            <span class="status {{statusClass}}">{{status}}</span>
         </div>
-
-        <p><strong>Motivo:</strong></p>
     </div>
 
     <div class="card-btn">
-        <a href="/pages/consulta-dados.html">
+        <a href="/pages/consulta-dados.html?id={{id}}">
             <button class="btn btn-info">
                 <span class="material-symbols-outlined">info</span>
             </button>

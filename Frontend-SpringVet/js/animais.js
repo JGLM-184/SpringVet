@@ -25,10 +25,11 @@ function renderCardAnimal(animal) {
     if (!container) return;
 
     let cardHTML = templateCardAnimal
-        .replace("{{nome}}", animal.nome)
-        .replace("{{especie}}", animal.especie)
-        .replace("{{raca}}", animal.raca)
-        .replace("{{cor}}", animal.cor || "—");
+        .replace(/{{id}}/g, animal.id)
+        .replace(/{{nome}}/g, animal.nome)
+        .replace(/{{especie}}/g, animal.especie)
+        .replace(/{{raca}}/g, animal.raca)
+        .replace(/{{cor}}/g, animal.cor || "—");
 
     const tempDiv = document.createElement("div");
     tempDiv.innerHTML = cardHTML;

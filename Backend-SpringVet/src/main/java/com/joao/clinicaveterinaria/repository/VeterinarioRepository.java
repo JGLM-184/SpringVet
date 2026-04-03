@@ -11,4 +11,5 @@ import com.joao.clinicaveterinaria.model.entity.Veterinario;
 public interface VeterinarioRepository extends JpaRepository<Veterinario, Long>{
 	
 	List<Veterinario> findByNomeContainingIgnoreCase(String nome);
+	long countByAtivoTrue();
 }

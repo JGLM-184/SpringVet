@@ -70,6 +70,10 @@ public class AnimalService {
 	    return animaisDto;
 	}
 	
+	public long totalAnimais() {
+		return animalRepository.count();
+	}
+	
 	public AnimalDto criar(AnimalDto dto, Long id) {
 		Tutor tutor = tutorRepository.findById(id).
 				orElseThrow(() -> new ResourceNotFoundException("Tutor não encontrado"));

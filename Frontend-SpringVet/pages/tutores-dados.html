@@ -171,17 +171,23 @@
 
     <dialog id="modal-nova-consulta">
 
-        <h2>Novo Animal</h2>
+        <h2>Nova Consulta</h2>
 
         <form>
-
-            <input class="input-text" type="text" name="nome" placeholder="Nome">
+            <input class="input-text" type="text" name="animal" readonly>
+            <select class="input-text" name="veterinario" required>
+                <option value="" disabled selected>Veterinario</option>
+            </select>
+            <input class="input-text" type="datetime-local" name="data-hora" placeholder="Data e horário" required>
+            <input class="input-text" type="text" name="motivo" placeholder="Motivo" required>
+            <input class="input-text" type="text" name="observacao" placeholder="Observação" required>
+            <input class="input-text" type="text" name="valor" placeholder="Valor" required>
+            <input class="input-text" type="text" name="forma-pagamento" placeholder="Forma de pagamento" required>
 
             <div class="modal-botoes">
                 <button id="cancelar-nova-consulta" class="btn btn-danger" type="button">Cancelar</button>
-                <button class="btn-confirm" type="submit">Salvar</button>
+                <button class="btn btn-primary" type="submit">Salvar</button>
             </div>
-
         </form>
     </dialog>
 

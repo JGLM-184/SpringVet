@@ -20,3 +20,8 @@
   border-radius: 10px;
 }
 
+ .flex-box-veterinarios > p {
+  color: var(--branco);
+  font-size: 1em;
+  font-weight: 600;
+}

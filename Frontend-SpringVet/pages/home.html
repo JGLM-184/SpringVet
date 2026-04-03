@@ -1,59 +1,52 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link rel="stylesheet" href="../css/global.css">
-    <link rel="stylesheet" href="../css/home.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <link rel="stylesheet" href="../css/global.css" />
+    <link rel="stylesheet" href="../css/home.css" />
     <title>Início</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <nav id="navbar"></nav>
     <main class="container">
-        <div class="flex-box-consultas">
-            <h1>Consultas de hoje:</h1>
+      <div class="flex-box-consultas">
+        <h1>Consultas de hoje:</h1>
+        <div class="lista-consultas"></div>
+      </div>
+      <div class="flex-box-dash">
+        <div class="dash-info">
+          <div class="flex-box-info">
+            <p>Total de hoje: <strong id="total-hoje">0</strong></p>
+            <p>Total agendadas: <strong id="total-consultas">0</strong></p>
+            <p>Tutores: <strong id="total-tutores">0</strong></p>
+            <p>Animais: <strong id="total-animais">0</strong></p>
+            <p>Veterinários: <strong id="total-vets">0</strong></p>
+          </div>
+          <div class="flex-box-atraso">
+            <h4>Consultas em atraso:</h4>
+            <div id="lista-atrasos"></div>
+          </div>
         </div>
-        <div class="flex-box-dash">
-            <div class="dash-info">
-                <div class="flex-box-info">
-                    <strong><p>Consultas de hoje: </p></strong>
-                    <strong><p>Consultas totais: </p></strong>
-                    <strong><p>Animais cadastrados: </p></strong>
-                    <strong><p>Veterinários: </p></strong>
-                </div>
-                <div class="flex-box-atraso">
-                    <h4>Consultas em atraso:</h4>
-                    <p>Exemplo</p>
-                    <p>Exemplo</p>
-                </div>
-            </div>
-            <div class="dash-acoes">
-                <button class="btn btn-secondary">
-                    <span>Novo Tutor</span>
-                    <span class="material-symbols-outlined">
-                        person
-                    </span>
-                </button>
-                <button class="btn btn-secondary">
-                    <span>Novo Veterinário</span>
-                    <span class="material-symbols-outlined">
-                        medical_mask
-                    </span>
-                </button>
-                <button class=" btn btn-secondary">
-                    <span>Nova Consulta</span>
-                    <span class="material-symbols-outlined">
-                        ecg_heart
-                    </span>
-                </button>
-            </div>
+        <div class="dash-acoes">
+          <a class="btn btn-secondary" href="/pages/tutores-cadastro.html">
+            <span>Novo Tutor</span>
+            <span class="material-symbols-outlined"> person </span>
+          </a>
+
+          <a class="btn btn-secondary" href="/pages/veterinarios-cadastro.html">
+            <span>Novo Veterinário</span>
+            <span class="material-symbols-outlined"> medical_mask </span>
+          </a>
         </div>
+      </div>
     </main>
     <script src="../js/navbar.js"></script>
-    <script src="../js/card-consultas.js"></script>
-</body>
-
+    <script src="../js/home.js"></script>
+  </body>
 </html>

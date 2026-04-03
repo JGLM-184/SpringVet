@@ -51,6 +51,11 @@ public class AnimalController {
 	    return animalService.buscarPorNome(tutorId, nome);
 	}
 	
+	@GetMapping("/total")
+	public long totalAnimais() {
+		return animalService.totalAnimais();
+	}
+	
 	@PostMapping("/{id}")
 	public AnimalDto salvar(@PathVariable Long id, @Valid @RequestBody AnimalDto dto) {
 		return animalService.criar(dto, id);

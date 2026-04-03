@@ -59,6 +59,10 @@ public class TutorService {
 		return toDto(tutor);
 	}
 	
+	public long totalTutores() {
+		return tutorRepository.count();
+	}
+	
 	public TutorDto criar(TutorDto dto) {
 		Tutor tutor = toTutor(dto);
 		tutorRepository.save(tutor);
