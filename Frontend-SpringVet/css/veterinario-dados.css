@@ -42,6 +42,14 @@
     overflow-y: auto;
 }
 
+#agenda {
+   display: flex;
+    flex-direction: column;
+    gap: 15px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
 .perfil-veterinario {
     display: flex;
     align-self: center;

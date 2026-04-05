@@ -36,7 +36,7 @@ function renderCardAnimal(animal) {
     const cardElement = tempDiv.firstElementChild;
 
     cardElement.querySelector(".btn-editar-animal")?.addEventListener("click", () => abrirModalEditarAnimal(animal));
-    cardElement.querySelector(".btn-historico-animal")?.addEventListener("click", () => abrirHistoricoAnimal(animal));
+
     cardElement.querySelector(".btn-nova-consulta")?.addEventListener("click", () => abrirModalNovaConsulta(animal));
 
     container.appendChild(cardElement);

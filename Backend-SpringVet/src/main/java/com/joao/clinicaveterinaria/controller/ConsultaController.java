@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.joao.clinicaveterinaria.dto.ConsultaDetalheDto;
 import com.joao.clinicaveterinaria.dto.ConsultaDto;
 import com.joao.clinicaveterinaria.service.ConsultaService;
 
@@ -33,6 +34,11 @@ public class ConsultaController {
 		return consultaService.listar();
 	}
 	
+	@GetMapping("/{id}")
+	public ConsultaDetalheDto buscarPorId(@PathVariable Long id) {
+		return consultaService.buscarPorId(id);
+	}
+	
 	@GetMapping("total")
 	public int totalConsulta() {
 		return consultaService.totalAgendada();
@@ -46,6 +52,11 @@ public class ConsultaController {
 	@GetMapping("total/hoje")
 	public int totalConsultaHoje() {
 		return consultaService.totalHoje();
+	}
+	
+	@GetMapping("atrasadas")
+	public List<ConsultaDto> consultasAtrasadas() {
+		return consultaService.buscarAtrasadas();
 	}
 	
 	@GetMapping("/animal/{id}")
@@ -64,7 +75,7 @@ public class ConsultaController {
 	}
 	
 	@PutMapping("/{id}/veterinario/{idVeterinario}")
-	public ConsultaDto alterar(@PathVariable Long id, @PathVariable Long idVeterinario, @Valid @RequestBody ConsultaDto dto) {
+	public ConsultaDetalheDto alterar(@PathVariable Long id, @PathVariable Long idVeterinario, @Valid @RequestBody ConsultaDto dto) {
 		return consultaService.alterar(id, idVeterinario, dto);
 	}
 	

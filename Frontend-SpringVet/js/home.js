@@ -1,21 +1,25 @@
 let templateCard = "";
+let templateCardCompact = "";
 
 //-------------------------
-//--- CARREGAR TEMPLATE ---
+//--- CARREGAR TEMPLATES --
 //-------------------------
-fetch("../components/card-consulta.html")
-  .then(response => response.text())
-  .then(template => {
-    templateCard = template;
+Promise.all([
+  fetch("../components/card-consulta.html").then(r => r.text()),
+  fetch("../components/card-consulta-compact.html").then(r => r.text())
+])
+.then(([templateNormal, templateCompact]) => {
+  templateCard = templateNormal;
+  templateCardCompact = templateCompact;
 
-    if (document.querySelector(".flex-box-consultas")) {
-      carregarConsultasHoje();
-      carregarDashboard();
-    }
-  })
-  .catch(err => {
-    console.error("Erro ao carregar template:", err);
-  });
+  if (document.querySelector(".flex-box-consultas")) {
+    carregarConsultasHoje();
+    carregarDashboard();
+  }
+})
+.catch(err => {
+  console.error("Erro ao carregar templates:", err);
+});
 
 
 //----------------------
@@ -34,7 +38,22 @@ function carregarConsultasHoje() {
 
 
 //----------------------
-//---- RENDERIZAÇÃO ----
+//-- CONSULTAS ATRASADAS
+//----------------------
+function carregarConsultasAtrasadas() {
+  fetch("http://localhost:8080/consultas/atrasadas")
+    .then(res => res.json())
+    .then(consultas => {
+      renderConsultasAtrasadas(consultas);
+    })
+    .catch(err => {
+      console.error("Erro ao buscar consultas atrasadas:", err);
+    });
+}
+
+
+//----------------------
+//---- RENDER HOJE ------
 //----------------------
 function renderConsultasHoje(consultas) {
   const container = document.querySelector(".lista-consultas");
@@ -67,6 +86,36 @@ function renderConsultasHoje(consultas) {
 
 
 //----------------------
+//-- RENDER ATRASADAS ---
+//----------------------
+function renderConsultasAtrasadas(consultas) {
+  const container = document.querySelector("#lista-atrasos");
+
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  if (consultas.length === 0) {
+    container.innerHTML = "<p>Nenhuma consulta em atraso.</p>";
+    return;
+  }
+
+  consultas.forEach(consulta => {
+    let card = templateCardCompact;
+
+    card = card.replace(/{{id}}/g, consulta.id);
+    card = card.replace(/{{dataHora}}/g, formatarDataHora(consulta.dataHora));
+    card = card.replace(/{{status}}/g, consulta.status || "-");
+    card = card.replace(/{{statusClass}}/g, getStatusClass(consulta.status));
+    card = card.replace(/{{animal}}/g, consulta.animalNome || "-");
+    card = card.replace(/{{veterinario}}/g, consulta.veterinarioNome || "-");
+
+    container.insertAdjacentHTML("beforeend", card);
+  });
+}
+
+
+//----------------------
 //---- DASHBOARD -------
 //----------------------
 function carregarDashboard() {
@@ -75,8 +124,13 @@ function carregarDashboard() {
   carregarTotalTutores();
   carregarTotalAnimais();
   carregarTotalVets();
+  carregarConsultasAtrasadas();
 }
 
+
+//----------------------
+//---- TOTAIS ----------
+//----------------------
 function carregarTotalHoje() {
   fetch("http://localhost:8080/consultas/total/hoje")
     .then(res => res.json())

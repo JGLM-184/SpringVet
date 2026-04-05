@@ -155,4 +155,169 @@ function atualizarVeterinario(id, dados) {
         alert("Veterinário atualizado com sucesso!");
     })
     .catch(err => console.error("Erro ao atualizar:", err));
-}    
+}
+
+//-------------------------
+//--- TEMPLATE CONSULTA ---
+//-------------------------
+let templateCard = "";
+
+//-------------------------
+//--- CARREGAR TEMPLATE ---
+//-------------------------
+fetch("../components/card-consulta.html")
+  .then(response => response.text())
+  .then(template => {
+    templateCard = template;
+
+    if (id) {
+      carregarAgenda();
+    }
+  })
+  .catch(err => console.error("Erro ao carregar template:", err));
+
+function carregarAgenda() {
+  fetch(`http://localhost:8080/consultas/veterinario/${id}`)
+    .then((res) => res.json())
+    .then((consultas) => {
+      let apenasAgendadas = consultas.filter((c) => c.status === "AGENDADA");
+      let filtradas = aplicarFiltrosAgenda(apenasAgendadas);
+      renderAgenda(filtradas);
+    })
+    .catch((err) => console.error("Erro ao buscar agenda:", err));
+}
+
+function renderAgenda(consultas) {
+  const container = document.querySelector("#agenda");
+
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  if (!consultas || consultas.length === 0) {
+    container.innerHTML = "<p>Nenhuma consulta encontrada.</p>";
+    return;
+  }
+
+  consultas.sort((a, b) => new Date(a.dataHora) - new Date(b.dataHora));
+
+  consultas.forEach(consulta => {
+    let card = templateCard;
+
+    card = card.replace(/{{id}}/g, consulta.id);
+    card = card.replace(/{{dataHora}}/g, formatarDataHora(consulta.dataHora));
+    card = card.replace(/{{status}}/g, consulta.status || "-");
+    card = card.replace(/{{statusClass}}/g, getStatusClass(consulta.status));
+    card = card.replace(/{{motivo}}/g, consulta.motivo || "-");
+    card = card.replace(/{{animal}}/g, consulta.animalNome || "-");
+    card = card.replace(/{{tutor}}/g, consulta.tutorNome || "-");
+    card = card.replace(/{{veterinario}}/g, consulta.veterinarioNome || "-");
+    card = card.replace(/{{valor}}/g, formatarValor(consulta.valor));
+
+    container.insertAdjacentHTML("beforeend", card);
+  });
+}
+
+const inputBusca = document.querySelector('.input-text[type="search"]');
+const inputData = document.querySelector('.input-text-secondary[type="date"]');
+const btnBuscar = document.querySelector(".btn-outline-light");
+
+function aplicarFiltrosAgenda(consultas) {
+  const texto = inputBusca?.value.toLowerCase().trim();
+  const data = inputData?.value;
+
+  return consultas.filter(c => {
+
+    if (texto) {
+      const animal = c.animalNome?.toLowerCase() || "";
+
+      if (!animal.includes(texto)) {
+        return false;
+      }
+    }
+
+    if (data) {
+      const dataConsulta = new Date(c.dataHora).toISOString().split("T")[0];
+
+      if (dataConsulta !== data) {
+        return false;
+      }
+    }
+
+    return true;
+  });
+}
+
+if (btnBuscar) {
+  btnBuscar.addEventListener("click", carregarAgenda);
+}
+
+if (inputBusca) {
+  inputBusca.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      carregarAgenda();
+    }
+  });
+}
+
+if (inputData) {
+  inputData.addEventListener("change", carregarAgenda);
+}
+
+//----------------------
+//---- UTILIDADES ------
+//----------------------
+function formatarDataHora(dataHora) {
+  if (!dataHora) return "-";
+
+  const data = new Date(dataHora);
+
+  return data.toLocaleString("pt-BR", {
+    dateStyle: "short",
+    timeStyle: "short"
+  });
+}
+
+function getStatusClass(status) {
+  if (!status) return "";
+
+  switch (status) {
+    case "AGENDADA":
+      return "status-agendada";
+    case "FINALIZADA":
+      return "status-finalizada";
+    case "CANCELADA":
+      return "status-cancelada";
+    default:
+      return "";
+  }
+}
+
+function formatarValor(valor) {
+  if (valor == null) return "-";
+
+  return Number(valor).toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL"
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const btnHistorico = document.getElementById("btn-historico");
+
+    if (!btnHistorico) {
+        console.error("Botão histórico não encontrado");
+        return;
+    }
+
+    btnHistorico.addEventListener("click", () => {
+        if (!veterinarioAtual) {
+            console.error("Veterinário ainda não carregado");
+            return;
+        }
+
+        console.log("Redirecionando com ID:", veterinarioAtual.id);
+
+        window.location.href = `/pages/historico-veterinario.html?id=${veterinarioAtual.id}`;
+    });
+});

@@ -20,4 +20,5 @@ public interface ConsultaRepository extends JpaRepository<Consulta, Long>{
 	int countByStatus(String status);
 	
 	boolean existsByVeterinarioAndDataHora(Veterinario veterinario, LocalDateTime dataHora);
+	List<Consulta> findByDataHoraBeforeAndStatus(LocalDateTime dataHora, String status);
 }

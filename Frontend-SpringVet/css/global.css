@@ -1,26 +1,25 @@
 @charset "UTF-8";
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
 
 :root {
-    --verde-escuro: #2e411d;
-    --marrom: #4c2a19;
-    --verde-claro: #8ea17a;
-    --branco: #fcffeb;
-    --marrom-claro: #966850;
-    --vermelho: #ad1717;
+  --verde-escuro: #2e411d;
+  --marrom: #4c2a19;
+  --verde-claro: #8ea17a;
+  --branco: #fcffeb;
+  --marrom-claro: #966850;
+  --vermelho: #ad1717;
 }
 
 .material-symbols-outlined {
   font-variation-settings:
-  'FILL' 0,
-  'wght' 200,
-  'GRAD' 0,
-  'opsz' 24
+    "FILL" 0,
+    "wght" 200,
+    "GRAD" 0,
+    "opsz" 24;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 /*
@@ -30,31 +29,29 @@ a {
 */
 
 * {
-    font-family: Poppins, Arial, Helvetica, sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  font-family: Poppins, Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-
 body {
-    margin: auto;
-    background-color: var(--branco);
-    height: 100vh;
+  margin: auto;
+  background-color: var(--branco);
+  height: 100vh;
 }
 
 main {
-    padding: 10px;
+  padding: 10px;
 }
 
 .voltar {
-    display: flex;
-    margin: 20px;
-    max-width: 100px;
-    width: 100%;
-    justify-content: flex-start;
+  display: flex;
+  margin: 20px;
+  max-width: 100px;
+  width: 100%;
+  justify-content: flex-start;
 }
-
 
 /*
 ================ 
@@ -62,24 +59,23 @@ main {
 ================
 */
 ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-    background: transparent;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--marrom-claro);
-    border-radius: 10px;
-    background-clip: content-box;
+  background: var(--marrom-claro);
+  border-radius: 10px;
+  background-clip: content-box;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--marrom-claro);
+  background: var(--marrom-claro);
 }
-
 
 /*
 ================ 
@@ -87,40 +83,38 @@ main {
 ================
 */
 nav {
-    display: flex;
-    padding: 5px;
-    width: 100%;   
-    background-color: var(--verde-claro);
-    position: sticky;
-    top: 0;
-    left: 0;
-    right: 0;
+  display: flex;
+  padding: 5px;
+  width: 100%;
+  background-color: var(--verde-claro);
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 
 ul {
-    display: flex;
-    list-style: none;
-    width: 100%;
-    align-items: center;
+  display: flex;
+  list-style: none;
+  width: 100%;
+  align-items: center;
 }
 
 li a {
-    text-decoration: none;
-    color: var(--branco);
-    font-weight: 600;
-    font-size: 1em;
-    border-radius: 10px;
-    padding: 5px 10px;
+  text-decoration: none;
+  color: var(--branco);
+  font-weight: 600;
+  font-size: 1em;
+  border-radius: 10px;
+  padding: 5px 10px;
 }
 
 ul span {
-    
-    font-size: 24px;
-    color: var(--branco);
-    font-weight: 600;
-    margin-right: auto;
+  font-size: 24px;
+  color: var(--branco);
+  font-weight: 600;
+  margin-right: auto;
 }
-
 
 /*
 ================ 
@@ -129,102 +123,96 @@ ul span {
 */
 
 .btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 8px 16px;
-    border-radius: 6px;
-    font-size: 0.9rem;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
 /*==================*/
 
 .btn-primary {
-    background-color: var(--verde-escuro);
-    color: white;
+  background-color: var(--verde-escuro);
+  color: white;
 }
 
 .btn-primary:hover {
-    background-color: #212d16;
+  background-color: #212d16;
 }
-
 
 /*==================*/
 
-
 .btn-secondary {
-    background-color: var(--marrom);
-    color: white;
+  background-color: var(--marrom);
+  color: white;
 }
 
 .btn-secondary:hover {
-    background-color: #2d1407;
+  background-color: #2d1407;
 }
 
 /*==================*/
 
-
 .btn-info {
-    background-color: var(--marrom-claro);
-    color: white;
+  background-color: var(--marrom-claro);
+  color: white;
 }
 
 .btn-info:hover {
-    background-color: #69432f;
+  background-color: #69432f;
 }
 
 /*==================*/
 
-
 .btn-danger {
-    background-color: var(--vermelho);
-    color: white;
+  background-color: var(--vermelho);
+  color: white;
 }
 
 .btn-danger:hover {
-    background-color: #770808;
+  background-color: #770808;
 }
 
 /*==================*/
 
-
 .btn-outline {
-    padding: 4px 8px;
-    background-color: transparent;
-    color: var(--marrom);
-    border: 2px solid var(--marrom);
-    border-radius: 6px;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
+  padding: 4px 8px;
+  background-color: transparent;
+  color: var(--marrom);
+  border: 2px solid var(--marrom);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .btn-outline:hover {
-    background-color: var(--marrom);
-    color: var(--branco);
+  background-color: var(--marrom);
+  color: var(--branco);
 }
 
 /*==================*/
 
 .btn-outline-light {
-    padding: 4px 8px;
-    background-color: transparent;
-    color: var(--branco);
-    border: 2px solid var(--branco);
-    border-radius: 6px;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
+  padding: 4px 8px;
+  background-color: transparent;
+  color: var(--branco);
+  border: 2px solid var(--branco);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .btn-outline-light:hover {
-    background-color: var(--branco);
-    color: var(--marrom);
+  background-color: var(--branco);
+  color: var(--marrom);
 }
-
 
 /*
 ================ 
@@ -232,87 +220,107 @@ ul span {
 ================
 */
 
-
 .card {
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-    height: 100%;
-    overflow-wrap: break-word;  
-    background-color: var(--branco);
-    border-radius: 15px;
-    padding: 18px;
-    gap: 12px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: 100%;
+  overflow-wrap: break-word;
+  background-color: var(--branco);
+  border-radius: 15px;
+  padding: 18px;
+  gap: 12px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
 }
 
 .card-titulo {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 16px;
-    color: var(--marrom);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  color: var(--marrom);
 }
 
 .card-info {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    font-size: 14px;
-    color: var(--marrom);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 14px;
+  color: var(--marrom);
 }
 
 .linha {
-    display: flex;
-    justify-content: space-between;
-}   
+  display: flex;
+  justify-content: space-between;
+}
 
 .card-btn {
-    margin-top: auto;
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
+  margin-top: auto;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
 }
 
 .card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 3px 10px rgba(0,0,0,0.12);
-    transition: 0.2s;
+  transform: translateY(-2px);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+  transition: 0.2s;
+}
+
+.card-compact {
+  padding: 10px;
+  gap: 6px;
+  font-size: 13px;
+}
+
+.card-compact .card-titulo h4 {
+  font-size: 14px;
+  margin: 0;
+}
+
+.card-compact .card-info {
+  font-size: 12px;
+  gap: 2px;
+}
+
+.card-compact .status {
+  font-size: 11px;
+  padding: 2px 6px;
 }
 
 /* Status Veterinario*/
 
 .status {
-    padding: 4px 10px;
-    border-radius: 12px;
-    font-size: 12px;
-    font-weight: bold;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
 }
 
 .status.ativo {
-    background-color: #d4edda;
-    color: #155724;
+  background-color: #d4edda;
+  color: #155724;
 }
 
 .status.inativo {
-    background-color: #f8d7da;
-    color: #721c24;
+  background-color: #f8d7da;
+  color: #721c24;
 }
 
 /* cores */
 .status-agendada {
-    background-color: #e3f2fd;
-    color: #1976d2;
+  background-color: #e3f2fd;
+  color: #1976d2;
 }
 
 .status-finalizada {
-    background-color: #e8f5e9;
-    color: #2e7d32;
+  background-color: #e8f5e9;
+  color: #2e7d32;
 }
 
 .status-cancelada {
-    background-color: #ffebee;
-    color: #c62828;
+  background-color: #ffebee;
+  color: #c62828;
 }
 
 /*
@@ -327,7 +335,9 @@ ul span {
   border-radius: 6px;
   font-size: 0.95rem;
   outline: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .input-text-secondary {
@@ -336,13 +346,15 @@ ul span {
   border-radius: 6px;
   font-size: 0.95rem;
   outline: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .filtros {
-    display: flex;
-    gap: 10px;
-    padding: 10px;
+  display: flex;
+  gap: 10px;
+  padding: 10px;
 }
 
 /*
@@ -352,17 +364,16 @@ ul span {
 */
 
 .img-icon {
-    width: 20px;
-    height: 20px;
+  width: 20px;
+  height: 20px;
 }
 
 /*==================*/
 
 .img-animal {
-    width: 50px;
-    height: 50px;
+  width: 50px;
+  height: 50px;
 }
-
 
 /*
 =================
@@ -370,24 +381,23 @@ ul span {
 =================
 */
 .modal-botoes {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-    margin-top: 15px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 15px;
 }
 
-
 dialog {
-    align-self: center;
-    justify-self: center;
-    border: none;
-    border-radius: 12px;
-    padding: 25px;
-    width: 400px;
+  align-self: center;
+  justify-self: center;
+  border: none;
+  border-radius: 12px;
+  padding: 25px;
+  width: 400px;
 }
 
 dialog::backdrop {
-    background: rgba(0,0,0,0.4);
+  background: rgba(0, 0, 0, 0.4);
 }
 
 /*
@@ -397,9 +407,9 @@ dialog::backdrop {
 */
 
 .checkbox-container {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 14px;
-    cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  cursor: pointer;
 }

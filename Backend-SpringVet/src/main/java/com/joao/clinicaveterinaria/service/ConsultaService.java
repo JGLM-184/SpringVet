@@ -7,11 +7,13 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.joao.clinicaveterinaria.dto.ConsultaDetalheDto;
 import com.joao.clinicaveterinaria.dto.ConsultaDto;
 import com.joao.clinicaveterinaria.exception.BusinessException;
 import com.joao.clinicaveterinaria.exception.ResourceNotFoundException;
 import com.joao.clinicaveterinaria.model.entity.Animal;
 import com.joao.clinicaveterinaria.model.entity.Consulta;
+import com.joao.clinicaveterinaria.model.entity.Tutor;
 import com.joao.clinicaveterinaria.model.entity.Veterinario;
 import com.joao.clinicaveterinaria.repository.AnimalRepository;
 import com.joao.clinicaveterinaria.repository.ConsultaRepository;
@@ -47,6 +49,13 @@ public class ConsultaService {
 		}
 		
 		return consultasDto;
+	}
+	
+	public ConsultaDetalheDto buscarPorId(Long id) {
+		Consulta consulta = consultaRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Consulta não encontrada"));
+		
+		return toDtoDetalhe(consulta); 
 	}
 	
 	public List<ConsultaDto> consultasHoje() {
@@ -110,6 +119,18 @@ public class ConsultaService {
 		return consultasAnimalDto;
 	}
 	
+	public List<ConsultaDto> buscarAtrasadas() {
+	    List<Consulta> consultas = consultaRepository.findByDataHoraBeforeAndStatus(LocalDateTime.now(), "AGENDADA");
+	    List<ConsultaDto> consultasDto = new ArrayList<>();
+	    
+	    for (Consulta consulta : consultas) {
+	    	ConsultaDto dto = toDto(consulta);
+			consultasDto.add(dto);
+		}
+	    
+	    return consultasDto;
+	}
+	
 	//-------------------------------
 
 	public ConsultaDto criar(Long idAnimal, Long idVeterinario, ConsultaDto dto) {		
@@ -135,7 +156,7 @@ public class ConsultaService {
 		return toDto(consulta);
 	}
 	
-	public ConsultaDto alterar(Long id, Long idVeterinario, ConsultaDto dto) {
+	public ConsultaDetalheDto alterar(Long id, Long idVeterinario, ConsultaDto dto) {
 
 	    Consulta consulta = consultaRepository.findById(id)
 	            .orElseThrow(() -> new ResourceNotFoundException("Consulta não encontrada"));
@@ -174,7 +195,7 @@ public class ConsultaService {
 
 	    consultaRepository.save(consulta);
 
-	    return toDto(consulta);
+	    return toDtoDetalhe(consulta);
 	}
 	
 	public void cancelarConsulta(Long id) {
@@ -224,22 +245,66 @@ public class ConsultaService {
 	private ConsultaDto toDto(Consulta consulta) {
 		ConsultaDto dto = new ConsultaDto();
 		
+		Animal animal = consulta.getAnimal();
+		Veterinario veterinario = consulta.getVeterinario();
+		Tutor tutor = animal.getTutor();
+		
 		dto.setId(consulta.getId());
 		dto.setDataHora(consulta.getDataHora());
 		dto.setStatus(consulta.getStatus());
 		dto.setMotivo(consulta.getMotivo());
 		dto.setObservacao(consulta.getObservacao());
 		dto.setValor(consulta.getValor());
+		dto.setFormaPagamento(consulta.getFormaPagamento());
 		dto.setPaga(consulta.isPaga());
 		dto.setDataCriacao(consulta.getDataCriacao());
-		dto.setAnimalId(consulta.getAnimal().getId());
-		dto.setAnimalNome(consulta.getAnimal().getNome());
-		dto.setVeterinarioId(consulta.getVeterinario().getId());
-		dto.setVeterinarioNome(consulta.getVeterinario().getNome());
-		dto.setTutorNome(consulta.getAnimal().getTutor().getNome());
+		dto.setAnimalId(animal.getId());
+		dto.setAnimalNome(animal.getNome());
+		dto.setVeterinarioId(veterinario.getId());
+		dto.setVeterinarioNome(veterinario.getNome());
+		dto.setTutorNome(tutor.getNome());
 
 		
 		return dto;
+	}
+	
+	private ConsultaDetalheDto toDtoDetalhe(Consulta consulta) {
+		ConsultaDetalheDto dtoDetalhe = new ConsultaDetalheDto();
+		
+		Animal animal = consulta.getAnimal();
+		Veterinario veterinario = consulta.getVeterinario();
+		Tutor tutor = animal.getTutor();
+		
+		dtoDetalhe.setId(consulta.getId());
+		dtoDetalhe.setDataHora(consulta.getDataHora());
+		dtoDetalhe.setStatus(consulta.getStatus());
+		dtoDetalhe.setMotivo(consulta.getMotivo());
+		dtoDetalhe.setObservacao(consulta.getObservacao());
+		dtoDetalhe.setValor(consulta.getValor());
+		dtoDetalhe.setFormaPagamento(consulta.getFormaPagamento());
+		dtoDetalhe.setPaga(consulta.isPaga());
+		dtoDetalhe.setDataCriacao(consulta.getDataCriacao());
+		
+		dtoDetalhe.setAnimalId(animal.getId());
+		dtoDetalhe.setAnimalNome(animal.getNome());
+		dtoDetalhe.setAnimalEspecie(animal.getEspecie());
+		dtoDetalhe.setAnimalRaca(animal.getRaca());
+		dtoDetalhe.setAnimalCor(animal.getCor());
+		dtoDetalhe.setAnimalSexo(animal.getSexo());
+		dtoDetalhe.setAnimalNasc(animal.getNasc());
+		dtoDetalhe.setAnimalCastrado(animal.isCastrado());
+		
+		dtoDetalhe.setVeterinarioId(veterinario.getId());
+		dtoDetalhe.setVeterinarioNome(veterinario.getNome());
+		dtoDetalhe.setVeterinarioEspecialidade(veterinario.getEspecialidade());
+		dtoDetalhe.setVeterinarioCrmv(veterinario.getCrmv());
+		dtoDetalhe.setVeterinarioTelefone(veterinario.getTelefone());
+		dtoDetalhe.setVeterinarioEmail(veterinario.getEmail());
+		
+		dtoDetalhe.setTutorNome(tutor.getNome());
+
+		
+		return dtoDetalhe;
 	}
 	
 }
