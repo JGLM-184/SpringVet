@@ -1,3 +1,5 @@
+  verificarLogin();
+
 let templateCard = "";
 let templateCardCompact = "";
 
@@ -26,7 +28,7 @@ Promise.all([
 //--- CONSULTAS HOJE ---
 //----------------------
 function carregarConsultasHoje() {
-  fetch("http://localhost:8080/consultas/hoje")
+  fetchComToken("http://localhost:8080/consultas/hoje")
     .then(res => res.json())
     .then(consultas => {
       renderConsultasHoje(consultas);
@@ -41,7 +43,7 @@ function carregarConsultasHoje() {
 //-- CONSULTAS ATRASADAS
 //----------------------
 function carregarConsultasAtrasadas() {
-  fetch("http://localhost:8080/consultas/atrasadas")
+  fetchComToken("http://localhost:8080/consultas/atrasadas")
     .then(res => res.json())
     .then(consultas => {
       renderConsultasAtrasadas(consultas);
@@ -132,7 +134,7 @@ function carregarDashboard() {
 //---- TOTAIS ----------
 //----------------------
 function carregarTotalHoje() {
-  fetch("http://localhost:8080/consultas/total/hoje")
+  fetchComToken("http://localhost:8080/consultas/total/hoje")
     .then(res => res.json())
     .then(total => {
       const el = document.querySelector("#total-hoje");
@@ -142,7 +144,7 @@ function carregarTotalHoje() {
 }
 
 function carregarTotalConsultas() {
-  fetch("http://localhost:8080/consultas/total")
+  fetchComToken("http://localhost:8080/consultas/total")
     .then(res => res.json())
     .then(total => {
       const el = document.querySelector("#total-consultas");
@@ -152,7 +154,7 @@ function carregarTotalConsultas() {
 }
 
 function carregarTotalTutores() {
-  fetch("http://localhost:8080/tutor/total")
+  fetchComToken("http://localhost:8080/tutor/total")
     .then(res => res.json())
     .then(total => {
       const el = document.querySelector("#total-tutores");
@@ -162,7 +164,7 @@ function carregarTotalTutores() {
 }
 
 function carregarTotalAnimais() {
-  fetch("http://localhost:8080/animal/total")
+  fetchComToken("http://localhost:8080/animal/total")
     .then(res => res.json())
     .then(total => {
       const el = document.querySelector("#total-animais");
@@ -172,7 +174,7 @@ function carregarTotalAnimais() {
 }
 
 function carregarTotalVets() {
-  fetch("http://localhost:8080/veterinario/total")
+  fetchComToken("http://localhost:8080/veterinario/total")
     .then(res => res.json())
     .then(total => {
       const el = document.querySelector("#total-vets");

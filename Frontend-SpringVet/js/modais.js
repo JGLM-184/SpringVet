@@ -1,3 +1,5 @@
+verificarLogin();
+
 document.addEventListener("DOMContentLoaded", () => {
 
     // =========================

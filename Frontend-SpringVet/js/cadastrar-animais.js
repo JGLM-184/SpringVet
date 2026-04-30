@@ -1,3 +1,5 @@
+verificarLogin();
+
 let contador = 1;
 
 function adicionarAnimal() {

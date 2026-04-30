@@ -1,3 +1,5 @@
+verificarLogin();
+
 const form = document.querySelector("#form-veterinario");
 
 if (form) {
@@ -25,7 +27,7 @@ function criarVeterinario(dados) {
 
     console.log(dados);
 
-    fetch("http://localhost:8080/veterinario", {
+    fetchComToken("http://localhost:8080/veterinario", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

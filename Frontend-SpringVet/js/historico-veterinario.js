@@ -1,3 +1,4 @@
+verificarLogin();
 //-----------------------
 //--- PEGAR ID DA URL ---
 //-----------------------
@@ -34,7 +35,7 @@ fetch("/components/card-consulta.html")
 //--- BUSCAR CONSULTAS -
 //----------------------
 function carregarHistorico() {
-  fetch(`http://localhost:8080/consultas/veterinario/${veterinarioId}`)
+  fetchComToken(`http://localhost:8080/consultas/veterinario/${veterinarioId}`)
     .then(async (res) => {
       if (!res.ok) {
         const erro = await res.text();

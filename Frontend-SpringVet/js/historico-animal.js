@@ -1,3 +1,4 @@
+verificarLogin();
 //-----------------------
 //--- PEGAR ID DA URL ---
 //-----------------------
@@ -29,7 +30,7 @@ fetch("/components/card-consulta.html")
 //--- BUSCAR ANIMAL ----
 //----------------------
 function carregarDadosAnimal() {
-  fetch(`http://localhost:8080/animal/${animalId}`)
+  fetchComToken(`http://localhost:8080/animal/${animalId}`)
     .then(res => res.json())
     .then(animal => preencherDadosAnimal(animal))
     .catch(err => console.error("Erro ao buscar animal:", err));
@@ -57,7 +58,7 @@ function preencherDadosAnimal(a) {
 //--- BUSCAR CONSULTAS -
 //----------------------
 function carregarHistorico() {
-  fetch(`http://localhost:8080/consultas/animal/${animalId}`)
+  fetchComToken(`http://localhost:8080/consultas/animal/${animalId}`)
     .then(res => res.json())
     .then(consultas => {
       let filtradas = aplicarFiltros(consultas);

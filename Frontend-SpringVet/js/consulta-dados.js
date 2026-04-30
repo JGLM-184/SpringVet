@@ -1,3 +1,5 @@
+verificarLogin();
+
 //-----------------------
 //--- PEGAR ID DA URL ---
 //-----------------------
@@ -12,7 +14,7 @@ let consultaAtual = null;
 //----------------------
 //--- BUSCAR CONSULTA ---
 //----------------------
-fetch(`http://localhost:8080/consultas/${id}`)
+fetchComToken(`http://localhost:8080/consultas/${id}`)
   .then(res => res.json())
   .then(consulta => {
     consultaAtual = consulta;
@@ -130,7 +132,7 @@ function formatarParaInput(dataHora) {
 //--- CARREGAR VETERINÁRIOS ----
 //------------------------------
 function carregarVeterinarios(select, selecionadoId) {
-  fetch("http://localhost:8080/veterinario")
+  fetchComToken("http://localhost:8080/veterinario")
     .then(res => res.json())
     .then(vets => {
 
@@ -211,7 +213,7 @@ if (formEditarConsulta) {
 //--- PUT CONSULTA -------------
 //------------------------------
 function atualizarConsulta(veterinarioId, dados) {
-  fetch(`http://localhost:8080/consultas/${id}/veterinario/${veterinarioId}`, {
+  fetchComToken(`http://localhost:8080/consultas/${id}/veterinario/${veterinarioId}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json"
@@ -270,7 +272,7 @@ if (btnCancelarConsulta) {
 }
 
 function cancelarConsulta() {
-  fetch(`http://localhost:8080/consultas/${id}/cancelar`, {
+  fetchComToken(`http://localhost:8080/consultas/${id}/cancelar`, {
     method: "PUT"
   })
     .then(async (res) => {
@@ -320,7 +322,7 @@ if (btnFinalizarConsulta) {
 }
 
 function finalizarConsulta() {
-  fetch(`http://localhost:8080/consultas/${id}/finalizar`, {
+  fetchComToken(`http://localhost:8080/consultas/${id}/finalizar`, {
     method: "PUT"
   })
     .then(async (res) => {
@@ -337,4 +339,12 @@ function finalizarConsulta() {
       console.error("Erro ao finalizar:", err);
       alert(err.message);
     });
+}
+
+const btnCancelarEditar = document.getElementById("cancelar-editar-consulta");
+
+if (btnCancelarEditar) {
+  btnCancelarEditar.addEventListener("click", () => {
+    document.getElementById("modal-editar-consulta").close();
+  });
 }

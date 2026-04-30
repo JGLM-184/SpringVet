@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 import com.joao.clinicaveterinaria.dto.AnimalDto;
 import com.joao.clinicaveterinaria.dto.TutorDto;
 import com.joao.clinicaveterinaria.exception.ResourceNotFoundException;
-import com.joao.clinicaveterinaria.model.entity.Animal;
-import com.joao.clinicaveterinaria.model.entity.Tutor;
+import com.joao.clinicaveterinaria.model.Animal;
+import com.joao.clinicaveterinaria.model.Tutor;
 import com.joao.clinicaveterinaria.repository.AnimalRepository;
 import com.joao.clinicaveterinaria.repository.TutorRepository;
 

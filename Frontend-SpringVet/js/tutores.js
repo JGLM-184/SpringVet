@@ -1,3 +1,5 @@
+verificarLogin();
+
 let templateCard = "";
 
 //-------------------------
@@ -21,7 +23,7 @@ fetch("../components/card-tutor.html")
 //--- CARREGAR TODOS ---
 //----------------------
 function carregarTutores() {
-  fetch("http://localhost:8080/tutor")
+  fetchComToken("http://localhost:8080/tutor")
     .then(res => res.json())
     .then(tutores => {
       renderTutores(tutores);
@@ -69,7 +71,7 @@ function buscarTutores() {
     return;
   }
 
-  fetch(`http://localhost:8080/tutor/buscar?nome=${encodeURIComponent(nomeFiltro)}`)
+  fetchComToken(`http://localhost:8080/tutor/buscar?nome=${encodeURIComponent(nomeFiltro)}`)
     .then(res => res.json())
     .then(tutores => {
 

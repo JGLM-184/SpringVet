@@ -1,3 +1,5 @@
+verificarLogin();
+
 const form = document.querySelector(".form-grid");
 
 if (!form) {
@@ -34,7 +36,7 @@ form.addEventListener("submit", function (e) {
         tutor.animais.push(animal);
     });
 
-    fetch("http://localhost:8080/tutor", {
+    fetchComToken("http://localhost:8080/tutor", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

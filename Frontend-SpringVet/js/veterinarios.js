@@ -1,3 +1,5 @@
+verificarLogin();
+
 let templateCardVet = "";
 
 //-------------------------
@@ -77,7 +79,7 @@ function buscarVeterinarios() {
 
   url += params.join("&");
 
-  fetch(url)
+  fetchComToken(url)
     .then(res => res.json())
     .then(veterinarios => {
       renderVeterinarios(veterinarios);

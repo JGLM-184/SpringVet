@@ -1,3 +1,5 @@
+verificarLogin();
+
 //-----------------------
 //--- PEGAR ID DA URL ---
 //-----------------------
@@ -10,7 +12,7 @@ let veterinarioAtual = null;
 //---- BUSCAR VETERINÁRIO ----
 //----------------------------
 if (id) {
-    fetch(`http://localhost:8080/veterinario/${id}`)
+    fetchComToken(`http://localhost:8080/veterinario/${id}`)
         .then(res => res.json())
         .then(veterinario => {
             veterinarioAtual = veterinario;
@@ -66,7 +68,7 @@ function atualizarBotaoStatus(veterinario) {
 function alterarStatus(veterinario) {
     const acao = veterinario.ativo ? "inativar" : "ativar";
 
-    fetch(`http://localhost:8080/veterinario/${veterinario.id}/${acao}`, {
+    fetchComToken(`http://localhost:8080/veterinario/${veterinario.id}/${acao}`, {
         method: "PUT"
     })
     .then(() => {
@@ -136,7 +138,7 @@ if (formEditarVet) {
 //--- ATUALIZAR --------
 //----------------------
 function atualizarVeterinario(id, dados) {
-    fetch(`http://localhost:8080/veterinario/${id}`, {
+    fetchComToken(`http://localhost:8080/veterinario/${id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
@@ -177,7 +179,7 @@ fetch("../components/card-consulta.html")
   .catch(err => console.error("Erro ao carregar template:", err));
 
 function carregarAgenda() {
-  fetch(`http://localhost:8080/consultas/veterinario/${id}`)
+  fetchComToken(`http://localhost:8080/consultas/veterinario/${id}`)
     .then((res) => res.json())
     .then((consultas) => {
       let apenasAgendadas = consultas.filter((c) => c.status === "AGENDADA");

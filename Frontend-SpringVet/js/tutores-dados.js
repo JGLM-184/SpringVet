@@ -1,3 +1,4 @@
+verificarLogin();
 //-----------------------
 //--- PEGAR ID DA URL ---
 //-----------------------
@@ -7,7 +8,7 @@ const id = params.get("id");
 //----------------------
 //--- BUSCAR TUTOR -----
 //----------------------
-fetch(`http://localhost:8080/tutor/${id}`)
+fetchComToken(`http://localhost:8080/tutor/${id}`)
   .then((res) => res.json())
   .then((tutor) => {
     preencherDados(tutor);
@@ -45,7 +46,7 @@ if (formEditar) {
 }
 
 function atualizarTutor(dados) {
-  fetch(`http://localhost:8080/tutor/${id}`, {
+  fetchComToken(`http://localhost:8080/tutor/${id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -76,7 +77,7 @@ if (btnExcluir) {
 }
 
 function excluirTutor() {
-  fetch(`http://localhost:8080/tutor/${id}`, {
+  fetchComToken(`http://localhost:8080/tutor/${id}`, {
     method: "DELETE",
   })
     .then(() => {
@@ -111,7 +112,7 @@ document.addEventListener("click", (e) => {
 });
 
 function carregarVeterinarios() {
-  fetch("http://localhost:8080/veterinario")
+  fetchComToken("http://localhost:8080/veterinario")
     .then((res) => res.json())
     .then((vets) => {
       const select = document.querySelector('select[name="veterinario"]');
@@ -161,7 +162,7 @@ if (formNovaConsulta) {
 }
 
 function criarConsulta(animalId, veterinarioId, dados) {
-  fetch(
+  fetchComToken(
     `http://localhost:8080/consultas/animal/${animalId}/veterinario/${veterinarioId}`,
     {
       method: "POST",

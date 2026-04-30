@@ -1,6 +1,6 @@
 .container {
-    height: calc(100vh - 120px);
-    margin: 20px auto;
+    min-height: calc(100vh - 160px);
+    margin: 20px auto 40px auto;
     max-width: 95vw;
     border-radius: 15px;
 }

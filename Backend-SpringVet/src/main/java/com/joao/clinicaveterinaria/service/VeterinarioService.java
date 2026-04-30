@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.joao.clinicaveterinaria.dto.VeterinarioDto;
 import com.joao.clinicaveterinaria.exception.ResourceNotFoundException;
-import com.joao.clinicaveterinaria.model.entity.Veterinario;
+import com.joao.clinicaveterinaria.model.Veterinario;
 import com.joao.clinicaveterinaria.repository.VeterinarioRepository;
 
 @Service

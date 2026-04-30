@@ -1,3 +1,5 @@
+verificarLogin();
+
 let templateCardAnimal = "";
 
 //-------------------------
@@ -44,7 +46,7 @@ function renderCardAnimal(animal) {
 
 async function listarAnimaisPorTutor(tutorId) {
     try {
-        const res = await fetch(`http://localhost:8080/animal/tutor/${tutorId}`);
+        const res = await fetchComToken(`http://localhost:8080/animal/tutor/${tutorId}`);
         const animais = await res.json();
 
         const container = document.querySelector(".container-cards-animais");
@@ -101,7 +103,7 @@ async function criarAnimal(dados) {
         const params = new URLSearchParams(window.location.search);
         const tutorId = params.get("id");
 
-        const res = await fetch(`http://localhost:8080/animal/${tutorId}`, {
+        const res = await fetchComToken(`http://localhost:8080/animal/${tutorId}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -130,7 +132,7 @@ async function criarAnimal(dados) {
         const params = new URLSearchParams(window.location.search);
         const tutorId = params.get("id");
 
-        const res = await fetch(`http://localhost:8080/animal/${tutorId}`, {
+        const res = await fetchComToken(`http://localhost:8080/animal/${tutorId}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -206,7 +208,7 @@ async function atualizarAnimal(dados) {
         const params = new URLSearchParams(window.location.search);
         const tutorId = params.get("id");
 
-        const res = await fetch(`http://localhost:8080/animal/${animalSelecionadoId}`, {
+        const res = await fetchComToken(`http://localhost:8080/animal/${animalSelecionadoId}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -239,7 +241,7 @@ async function excluirAnimal(animalId) {
         const params = new URLSearchParams(window.location.search);
         const tutorId = params.get("id");
 
-        await fetch(`http://localhost:8080/animal/${animalId}`, {
+        await fetchComToken(`http://localhost:8080/animal/${animalId}`, {
             method: "DELETE"
         });
 
@@ -274,7 +276,7 @@ function buscarAnimais() {
         return;
     }
 
-    fetch(`http://localhost:8080/animal/buscar?tutorId=${tutorId}&nome=${encodeURIComponent(nomeFiltro)}`)
+    fetchComToken(`http://localhost:8080/animal/buscar?tutorId=${tutorId}&nome=${encodeURIComponent(nomeFiltro)}`)
         .then(res => res.json())
         .then(animais => {
 

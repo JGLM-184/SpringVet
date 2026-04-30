@@ -1,3 +1,5 @@
+verificarLogin();
+
 let templateCard = "";
 
 //-------------------------
@@ -21,7 +23,7 @@ fetch("../components/card-consulta.html")
 //--- CARREGAR TODOS ---
 //----------------------
 function carregarConsultas() {
-  fetch("http://localhost:8080/consultas")
+  fetchComToken("http://localhost:8080/consultas")
     .then(res => res.json())
     .then(consultas => {
       renderConsultas(consultas);
@@ -70,7 +72,7 @@ const checkCancelada = document.querySelector("#check-cancelada");
 const btnBuscar = document.querySelector(".btn-outline");
 
 function buscarConsultas() {
-  fetch("http://localhost:8080/consultas")
+  fetchComToken("http://localhost:8080/consultas")
     .then(res => res.json())
     .then(consultas => {
 

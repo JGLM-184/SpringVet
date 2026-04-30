@@ -1,4 +1,4 @@
-package com.joao.clinicaveterinaria.model.entity;
+package com.joao.clinicaveterinaria.model;
 
 import java.util.ArrayList;
 import java.util.List;
