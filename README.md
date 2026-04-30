@@ -4,12 +4,12 @@ Projeto desenvolvido para praticar **Java, Spring Boot, APIs REST e integração
 
 A ideia é simular o fluxo da **recepção de uma clínica veterinária**, permitindo o cadastro de tutores, animais, veterinários e agendamento de consultas.
 
-## Funcionalidades da API (Em desenvolvimento
+## Funcionalidades
 
 - Cadastro de tutores
 - Cadastro de animais
 - Cadastro de veterinários
-- Agendamento de consultas
+- Agendamento e controle de consultas
 
 ## Tecnologias utilizadas
 
@@ -18,10 +18,10 @@ A ideia é simular o fluxo da **recepção de uma clínica veterinária**, permi
 - Spring Boot
 - Spring Data JPA
 - Hibernate
-- PostgreSQL
+- MySQL
 - Maven
 
-### Frontend (em desenvolvimento)
+### Frontend
 - HTML
 - CSS
 - JavaScript
@@ -29,5 +29,3 @@ A ideia é simular o fluxo da **recepção de uma clínica veterinária**, permi
 ## Testes
 
 As rotas da API foram testadas utilizando **Postman**.
-
-
